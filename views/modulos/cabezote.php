@@ -34,8 +34,11 @@
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
+
                 <li class="dropdown user user-menu">
-                    <a href="http://" class="dropdown-togl">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+
                         <img src="views/img/usuarios/default/anonymous.png" class="user-image">
                         <!--NOTE modulo config-->
                         <span class="hidden-xs">Usuario Administrador</span>
