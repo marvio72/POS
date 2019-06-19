@@ -7,6 +7,7 @@
     <title>OverSistemas</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="views/img/plantilla/icono-blanco.png">
 
     <!-- // ────────────────────────────────────────────────────────────────────────
     //   :::::: P L U G I N S   C S S : :  :   :    :     :        :          :
@@ -32,7 +33,7 @@
     //   :::::: P L U G I N S   J S : :  :   :    :     :        :          :
     // ────────────────────────────────────────────────────────────────────── -->
 
-    
+
 
     <!-- jQuery 3 -->
     <script src="views/bower_components/jquery/dist/jquery.min.js"></script>
@@ -56,7 +57,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
 
-    <?php
+        <?php
 
         // ──────────────────────────────────────────────────────────────────
         //   :::::: C A B E Z O T E : :  :   :    :     :        :          :
@@ -76,35 +77,40 @@
         // ────────────────────────────────────────────────────────────────────
 
         if (isset($_GET['ruta'])) {
-            
-            if ($_GET['ruta'] == 'inicio' ||
+
+            if (
+                $_GET['ruta'] == 'inicio' ||
                 $_GET['ruta'] == 'usuarios' ||
                 $_GET['ruta'] == 'categorias' ||
                 $_GET['ruta'] == 'productos' ||
                 $_GET['ruta'] == 'clientes' ||
                 $_GET['ruta'] == 'ventas' ||
                 $_GET['ruta'] == 'crear-venta' ||
-                $_GET['ruta'] == 'reportes') {
-                include "modulos/".$_GET['ruta'].".php";
-                }
-        }
+                $_GET['ruta'] == 'reportes'
+            ) {
+                include "modulos/" . $_GET['ruta'] . ".php";
+            } else {
+                include "modulos/404.php";
+            }
+        } else {
+            include "modulos/inicio.php";
+        }    
+
+            // ──────────────────────────────────────────────────────────────
+            //   :::::: F O O T E R : :  :   :    :     :        :          :
+            // ──────────────────────────────────────────────────────────────
+
+            include "modulos/footer.php";
 
 
-        // ──────────────────────────────────────────────────────────────
-        //   :::::: F O O T E R : :  :   :    :     :        :          :
-        // ──────────────────────────────────────────────────────────────
-    
-        include "modulos/footer.php";
-
-        
 
 
-    ?>
+            ?>
 
-    </div><!-- ./wrapper -->
+        </div><!-- ./wrapper -->
 
 
-    <script src="views/js/plantilla.js"></script>
-</body>
+        <script src="views/js/plantilla.js"></script>
+    </body>
 
-</html>
+    </html>
