@@ -1,3 +1,8 @@
+<?php
+
+    session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -53,11 +58,15 @@
 //   :::::: C U E R P O   D E L   D O C U M E N T O : :  :   :    :     :        :          :
 // ────────────────────────────────────────────────────────────────────────────────────────── -->
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
 
-        <?php
+
+
+    <?php
+    if (isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == "ok") {
+
+
+        echo '<div class="wrapper">';
 
         // ──────────────────────────────────────────────────────────────────
         //   :::::: C A B E Z O T E : :  :   :    :     :        :          :
@@ -86,7 +95,9 @@
                 $_GET['ruta'] == 'clientes' ||
                 $_GET['ruta'] == 'ventas' ||
                 $_GET['ruta'] == 'crear-venta' ||
-                $_GET['ruta'] == 'reportes'
+                $_GET['ruta'] == 'reportes' ||
+                $_GET['ruta'] == 'salir' ||
+                $_GET['ruta'] == 'login'
             ) {
                 include "modulos/" . $_GET['ruta'] . ".php";
             } else {
@@ -94,23 +105,25 @@
             }
         } else {
             include "modulos/inicio.php";
-        }    
+        }
 
-            // ──────────────────────────────────────────────────────────────
-            //   :::::: F O O T E R : :  :   :    :     :        :          :
-            // ──────────────────────────────────────────────────────────────
+        // ──────────────────────────────────────────────────────────────
+        //   :::::: F O O T E R : :  :   :    :     :        :          :
+        // ──────────────────────────────────────────────────────────────
 
-            include "modulos/footer.php";
-
-
+        include "modulos/footer.php";
 
 
-            ?>
+        echo '</div>';
+    }else{
+        
+        include "modulos/login.php";
+    }
+    ?>
 
-        </div><!-- ./wrapper -->
 
 
-        <script src="views/js/plantilla.js"></script>
-    </body>
+    <script src="views/js/plantilla.js"></script>
+</body>
 
-    </html>
+</html>
