@@ -57,6 +57,8 @@ session_start();
     <script src="views/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="views/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
     <script src="views/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+    <!-- Sweetalert 2-->
+    <script src="views/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 </head>
 
 <!-- // ──────────────────────────────────────────────────────────────────────────────────────────
