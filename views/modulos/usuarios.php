@@ -186,11 +186,11 @@
 
                             <div class="panel">SUBIR FOTO</div>
 
-                            <input type="file" name="nuevaFoto" id="nuevaFoto">
+                            <input type="file" name="nuevaFoto" class="nuevaFoto">
 
-                            <p class="help-block">Peso máximo de la foto 200 MB</p>
+                            <p class="help-block">Peso máximo de la foto 2 MB</p>
 
-                            <img src="views/img/usuarios/default/anonymous.png" class="img-thumbnail" width="100px">
+                            <img src="views/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
                         </div>
 
