@@ -32,7 +32,7 @@ class ControladorUsuarios {
                     $_SESSION['usuario'] = $respuesta['usuario'];
                     $_SESSION['foto'] = $respuesta['foto'];
                     $_SESSION['perfil'] = $respuesta['perfil'];
-                    
+
                     echo '<script>
                         window.location = "inicio";
                     </script>';
@@ -188,5 +188,17 @@ class ControladorUsuarios {
 				</script>';
             }      
         }
+    }
+
+    /*====================Comentario====================
+    MOSTRAR USUARIOS
+    ==================================================*/
+
+    public static function ctrMostrarUsuarios($item, $valor){
+
+        $tabla = "usuarios";
+        $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
+
+        return $respuesta;
     }
 }
