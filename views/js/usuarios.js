@@ -44,3 +44,49 @@ $(".nuevaFoto").change(function(){
         });
     }
 });
+
+/*==============================================================================================
+EDITAR USUARIO
+==============================================================================================*/
+
+$(".tablas").on("click", ".btnEditarUsuario" , function(){
+
+    var idUsuario = $(this).attr("idUsuario");
+    
+    var datos = new FormData();
+    datos.append("idUsuario",idUsuario);
+
+
+    //Ajax  
+    $.ajax({
+        
+        url: "ajax/usuarios.ajax.php", 
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false, 
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+
+            
+            $("#editarNombre").val(respuesta['nombre']);
+            $("#editarUsuario").val(respuesta['usuario']);
+            // En el perfil por ser un option tiene que ser en el html
+            $("#editarPerfil").html(respuesta['perfil']);
+            $("#editarPerfil").val(respuesta['perfil']);
+            $("#passwordActual").val(respuesta['password']);
+            $("#fotoActual").val(respuesta['foto']);
+            
+
+            if (respuesta['foto'] != '') {
+
+                $(".previsualizar").attr("src", respuesta['foto']);
+
+            }
+
+            
+        }
+    });
+
+});
