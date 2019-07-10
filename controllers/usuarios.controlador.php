@@ -20,6 +20,7 @@ class ControladorUsuarios {
 
                 $item = "usuario";
                 $valor = $_POST['ingUsuario'];
+                
 
                 $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla,$item,$valor);
 
@@ -34,9 +35,31 @@ class ControladorUsuarios {
                         $_SESSION['foto'] = $respuesta['foto'];
                         $_SESSION['perfil'] = $respuesta['perfil'];
 
-                        echo '<script>
-                        window.location = "inicio";
-                    </script>';
+                        /*====================Comentario====================
+                        REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+                        ==================================================*/
+                        // Zona horaria: Constante definida en bdconfig.php
+                        date_default_timezone_set(ZONAHORARIA);
+
+                        $fecha = date('Y-m-d');
+                        $hora = date('H:i:s');
+
+                        $fechaActual = $fecha . " " . $hora;
+
+                        $item1 = "ultimo_login";
+                        $valor1 = $fechaActual;
+
+                        $item2 = "id";
+                        $valor2 = $respuesta['id'];
+
+                        $ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+
+                        if ($ultimoLogin == "ok") {
+                            echo '<script>
+                                window.location = "inicio";
+                            </script>';
+                        }
+                        
                     }else{
                         echo '<br/><div class="alert alert-danger">El usuario aún no esta activo</div>';
                     }
