@@ -90,3 +90,49 @@ $(".tablas").on("click", ".btnEditarUsuario" , function(){
     });
 
 });
+
+/*==============================================================================================
+ACTIVAR USUARIO
+==============================================================================================*/
+
+$(".tablas").on("click",".btnActivar",function(){
+    var este = $(this);
+
+    var idUsuario = este.attr("idUsuario");
+    var estadoUsuario = este.attr("estadoUsuario");
+
+    var datos = new FormData();
+    datos.append("activarId", idUsuario);
+    datos.append("activarUsuario", estadoUsuario);
+
+    $.ajax({
+        url: "ajax/usuarios.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            console.log(respuesta);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        }
+    });
+
+
+    if (estadoUsuario == 0) {
+
+        este.removeClass('btn-success');
+        este.addClass('btn-danger');
+        este.html('Desactivado');
+        este.attr('estadoUsuario', 1);
+    } else {
+
+        este.removeClass('btn-danger');
+        este.addClass('btn-success');
+        este.html('Activado');
+        este.attr('estadoUsuario', 0);
+    }
+}); 
+    
