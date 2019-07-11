@@ -27,14 +27,16 @@ class ControladorUsuarios {
                 if($respuesta['usuario'] == $_POST['ingUsuario'] && $respuesta['password'] == $encriptar){
 
                     if ($respuesta['estado'] == 1) {
+                        
                         echo '<br/><div class="alert alert-success">Bienvenido al sistema</div>';
+                       
                         $_SESSION['iniciarSesion'] = 'ok';
                         $_SESSION['id'] = $respuesta['id'];
                         $_SESSION['nombre'] = $respuesta['nombre'];
                         $_SESSION['usuario'] = $respuesta['usuario'];
                         $_SESSION['foto'] = $respuesta['foto'];
                         $_SESSION['perfil'] = $respuesta['perfil'];
-
+                        
                         /*====================Comentario====================
                         REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
                         ==================================================*/
@@ -225,11 +227,17 @@ class ControladorUsuarios {
 
     public static function ctrMostrarUsuarios($item, $valor){
 
-        $tabla = "usuarios";
+        // if(isset($_POST['idUsuario']) || isset($_POST['validarUsuario'])){
 
-        $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
+            $tabla = "usuarios";
 
-        return $respuesta;
+            $respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
+
+            return $respuesta;
+
+        // }
+
+        
     }
 
     /*====================Comentario====================

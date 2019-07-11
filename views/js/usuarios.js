@@ -136,3 +136,61 @@ $(".tablas").on("click",".btnActivar",function(){
     }
 }); 
     
+/*==============================================================================================
+REVISAR SI EL USUARIO YA ESTA REGISTRADO
+==============================================================================================*/
+
+$("#nuevoUsuario").change(function() {
+    
+    $(".alert").remove();
+
+    var usuario = $(this).val();
+
+    var datos = new FormData();
+
+    datos.append("validarUsuario", usuario);
+
+    $.ajax({
+      url: "ajax/usuarios.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function(respuesta) {
+
+        var nuevoUsuario = $("#nuevoUsuario");
+
+        if(respuesta){
+             nuevoUsuario.parent().after('<div class="alert alert-warning">Este usuario ya existe en la base de datos</div>');
+
+             nuevoUsuario.val("");
+        }
+       
+      }
+
+    });
+});
+
+/*==============================================================================================
+LIMPIA EL FORMULARIO DE INGRESO DE USUARIOS EN EL MODAL
+==============================================================================================*/
+
+$("#modalAgregarUsuario").on("hidden.bs.modal", function(){
+
+    $(this).find('form')[0].reset();
+
+    $(".alert").remove();
+});
+
+/*==============================================================================================
+FUNCION PARA EVITAR DAR DE ALTA UN USUARIO AL PRESIONAR ENTER EN EL FORMULARIO DE INGRESO
+DE USUARIOS
+==============================================================================================*/
+
+function submit(){
+    var tecla = (document.all) ? e.keyCode :e.which;
+    
+    return (tecla!=13);
+}

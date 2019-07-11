@@ -144,7 +144,7 @@
 
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar Usuario">
+                                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar Usuario" id="nuevoUsuario" required>
 
                             </div>
 
@@ -329,7 +329,9 @@
 
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary">Modificar usuario</button>
+                    <!-- <button type="submit" class="btn btn-primary">Modificar usuario</button>  --> <!-- FIXME: EVITAR QUE SE DE DE ALTA USUARIO AL PRESIONAR ENTER -->
+
+                    <input type="button" value="Modificar usuario" class="btn btn-primary" onclick="submit();">
 
                 </div>
 

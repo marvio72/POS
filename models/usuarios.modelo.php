@@ -110,6 +110,7 @@ class ModeloUsuarios{
         if ($stmt->execute()) {
 
             return "ok";
+            
         } else {
 
             return "error";
