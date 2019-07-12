@@ -331,7 +331,7 @@
 
                     <!-- <button type="submit" class="btn btn-primary">Modificar usuario</button>  --> <!-- FIXME: EVITAR QUE SE DE DE ALTA USUARIO AL PRESIONAR ENTER -->
 
-                    <input type="button" value="Modificar usuario" class="btn btn-primary" onclick="submit();">
+                    <input type="button" value="Modificar usuario" class="btn btn-primary" onclick="submit()">
 
                 </div>
 

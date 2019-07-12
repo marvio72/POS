@@ -88,6 +88,43 @@ class ControladorUsuarios {
             preg_match('/^[a-z-A-Z0-9]+$/', $_POST['nuevoUsuario']) &&
             preg_match('/^[a-z-A-Z0-9]+$/', $_POST['nuevoPassword'])){
 
+                /*====================Comentario====================
+                VALIDAR SI EXITE EL USUARIO
+                ==================================================*/
+                $item = "usuario"; // TODO: Revisar codigo.
+                $valor = $_POST['nuevoUsuario'];
+                $tabla = "usuarios";
+
+                $validar = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
+
+    
+               
+                if ($validar['usuario'] == $_POST['nuevoUsuario']) {
+                    $datos = [];
+                    echo '<script>
+                    
+
+					swal.fire({
+
+						type: "error",
+						title: "¡El usuario ya existe en la base de datos!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+
+					}).then(function(result){
+
+						if(result.value){
+						
+							window.location = "usuarios";
+
+						}
+
+					});
+				    </script>';
+                    die();
+                };
+                
+
             	/*====================Comentario====================
                 VALIDAR IMAGEN Y DARLE UN NUEVO TAMAÑO
                 ==================================================*/

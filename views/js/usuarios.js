@@ -166,6 +166,8 @@ $("#nuevoUsuario").change(function() {
              nuevoUsuario.parent().after('<div class="alert alert-warning">Este usuario ya existe en la base de datos</div>');
 
              nuevoUsuario.val("");
+
+             nuevoUsuario.focus();
         }
        
       }
@@ -189,8 +191,17 @@ FUNCION PARA EVITAR DAR DE ALTA UN USUARIO AL PRESIONAR ENTER EN EL FORMULARIO D
 DE USUARIOS
 ==============================================================================================*/
 
-function submit(){
-    var tecla = (document.all) ? e.keyCode :e.which;
+// function submit(){
+//     var tecla = (document.all) ? e.keyCode :e.which;
     
-    return (tecla!=13);
-}
+//     return (tecla!=13);
+// }
+
+/*==============================================================================================
+Desabilita el enter en toda la pagina
+==============================================================================================*/
+window.addEventListener("keypress", function (event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    }
+}, false);
