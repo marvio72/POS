@@ -13,8 +13,7 @@ class ControladorUsuarios {
                 
                 
                 $encriptar = crypt($_POST['ingPassword'], '$2y$10$ksehXt7dOXtSYhTVrHikuO/4XqGYg9wVBwe5KF4IAUUsrFC14JI52');
-                // var_dump($encriptar);
-                // die();
+                
 
                 $tabla = "usuarios";
 
@@ -27,9 +26,10 @@ class ControladorUsuarios {
                 if($respuesta['usuario'] == $_POST['ingUsuario'] && $respuesta['password'] == $encriptar){
 
                     if ($respuesta['estado'] == 1) {
-                        
+
+
                         echo '<br/><div class="alert alert-success">Bienvenido al sistema</div>';
-                       
+                        
                         $_SESSION['iniciarSesion'] = 'ok';
                         $_SESSION['id'] = $respuesta['id'];
                         $_SESSION['nombre'] = $respuesta['nombre'];
@@ -42,7 +42,7 @@ class ControladorUsuarios {
                         ==================================================*/
                         // Zona horaria: Constante definida en bdconfig.php
                         date_default_timezone_set(ZONAHORARIA);
-
+                        
                         $fecha = date('Y-m-d');
                         $hora = date('H:i:s');
 
@@ -86,12 +86,12 @@ class ControladorUsuarios {
             
             if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['nuevoNombre']) &&
             preg_match('/^[a-z-A-Z0-9]+$/', $_POST['nuevoUsuario']) &&
-            preg_match('/^[a-z-A-Z0-9]+$/', $_POST['nuevoPassword'])){
+            preg_match('/^[a-z-A-Z0-9]+$/', $_POST['nuevoPassword']) && $_POST['nuevoPerfil'] != ""){
 
                 /*====================Comentario====================
                 VALIDAR SI EXITE EL USUARIO
                 ==================================================*/
-                $item = "usuario"; // TODO: Revisar codigo.
+                $item = "usuario"; 
                 $valor = $_POST['nuevoUsuario'];
                 $tabla = "usuarios";
 
@@ -460,6 +460,52 @@ class ControladorUsuarios {
                         
 
                 </script>';
+            }
+        }
+    }
+    /*====================Comentario====================
+    BORRAR USUARIO
+    ==================================================*/
+
+    public static function ctrBorrarUsuario(){
+
+        if (isset($_GET['idUsuario'])) {
+
+            $tabla = "usuarios";
+            $datos = $_GET['idUsuario'];
+            $user = $_GET['usuario'];
+            $foto = $_GET['fotoUsuario'];
+
+            $respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+
+            if ($respuesta == "ok") {
+
+                if ($foto != "") {
+                    unlink($foto);
+                    rmdir('views/img/usuarios/' . $user);
+                    $foto = "";
+                    $user = "";
+                }
+
+                echo '<script>
+
+					swal.fire({
+
+						type: "success",
+						title: "¡El usuario ha sido borrado correctamente!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar",
+                        closeOnConfirm: false
+					}).then(function(result){
+
+						if(result.value){
+						
+							window.location = "usuarios";
+
+						}
+
+					});
+                    </script>';
             }
         }
     }

@@ -191,6 +191,7 @@ FUNCION PARA EVITAR DAR DE ALTA UN USUARIO AL PRESIONAR ENTER EN EL FORMULARIO D
 DE USUARIOS
 ==============================================================================================*/
 
+
 $(document).ready(function () {
     $("form").keypress(function (e) {
         if (e.which == 13 || e.keyCode == 13) {
@@ -209,3 +210,30 @@ Desabilita el enter en toda la pagina
 //         event.preventDefault();
 //     }
 // }, false);
+
+
+/*==============================================================================================
+ ELIMINAR USUARIO
+==============================================================================================*/
+$(document).on("click", ".btnEliminarUsuario", function(){
+
+    var idUsuario = $(this).attr('idUsuario');
+    var fotoUsuario = $(this).attr('fotoUsuario');
+    var usuario = $(this).attr('usuario');
+
+    swal.fire({
+        title: '¿Está seguro de borrar el usuario?',
+        text: "¡Si no lo está, puede cancelar la acción!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar usuario!'
+    }).then((result)=>{
+        if(result.value){
+            
+            window.location = "index.php?ruta=usuarios&idUsuario=" + idUsuario + "&usuario=" + usuario + "&fotoUsuario=" + fotoUsuario;
+        }
+    });
+});
