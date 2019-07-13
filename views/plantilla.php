@@ -59,7 +59,10 @@ session_start();
     <script src="views/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
     <!-- Sweetalert 2-->
     <script src="views/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 </head>
+
 
 <!-- // ──────────────────────────────────────────────────────────────────────────────────────────
 //   :::::: C U E R P O   D E L   D O C U M E N T O : :  :   :    :     :        :          :

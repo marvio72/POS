@@ -49,7 +49,7 @@ $(".nuevaFoto").change(function(){
 EDITAR USUARIO
 ==============================================================================================*/
 
-$(".tablas").on("click", ".btnEditarUsuario" , function(){
+$(document).on("click", ".btnEditarUsuario" , function(){
 
     var idUsuario = $(this).attr("idUsuario");
     
@@ -95,7 +95,7 @@ $(".tablas").on("click", ".btnEditarUsuario" , function(){
 ACTIVAR USUARIO
 ==============================================================================================*/
 
-$(".tablas").on("click",".btnActivar",function(){
+$(document).on("click",".btnActivar",function(){
     var este = $(this);
 
     var idUsuario = este.attr("idUsuario");
@@ -113,11 +113,22 @@ $(".tablas").on("click",".btnActivar",function(){
         contentType: false,
         processData: false,
         success: function (respuesta) {
-            console.log(respuesta);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
+           
+            if (window.matchMedia("(max-width:767px)").matches) {
+                
+                swal.fire({
+                    title: 'El usuario ha sido actualizado',
+                    type: 'success',
+                    confirmButtonText: '¡Cerrar!'
+                }).then(function (result) {
+                    if (result.value) {
+
+                        window.location = "usuarios";
+                    }
+                });
+            }
         }
+        
     });
 
 
@@ -230,7 +241,7 @@ $(document).on("click", ".btnEliminarUsuario", function(){
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, borrar usuario!'
-    }).then((result)=>{
+    }).then(function (result){
         if(result.value){
             
             window.location = "index.php?ruta=usuarios&idUsuario=" + idUsuario + "&usuario=" + usuario + "&fotoUsuario=" + fotoUsuario;
