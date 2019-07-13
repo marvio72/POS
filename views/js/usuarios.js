@@ -191,17 +191,21 @@ FUNCION PARA EVITAR DAR DE ALTA UN USUARIO AL PRESIONAR ENTER EN EL FORMULARIO D
 DE USUARIOS
 ==============================================================================================*/
 
-// function submit(){
-//     var tecla = (document.all) ? e.keyCode :e.which;
-    
-//     return (tecla!=13);
-// }
+$(document).ready(function () {
+    $("form").keypress(function (e) {
+        if (e.which == 13 || e.keyCode == 13) {
+            return false;
+        }
+    });
+});
+
+
 
 /*==============================================================================================
 Desabilita el enter en toda la pagina
 ==============================================================================================*/
-window.addEventListener("keypress", function (event) {
-    if (event.keyCode == 13) {
-        event.preventDefault();
-    }
-}, false);
+// window.addEventListener("keypress", function (event) {
+//     if (event.keyCode == 13) {
+//         event.preventDefault();
+//     }
+// }, false);
