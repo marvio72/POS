@@ -18,33 +18,33 @@ class ControladorCategorias{
                 $respuesta = ModeloCategorias::mdlIngresarCategoria($tabla, $datos);
 
                 if ($respuesta == "ok") {
-                    echo `<script>
+                    echo '<script>
                         Swal.fire({
-                        type: "error",
-                        title: "¡La categoría ha sido guardada correctamente!",
-                        showConfirmButton: true,
-                        closeOnf Confirm: false
-                        }).then(function result(){
-                            if (result.value) {
-                                window.location = "categorias";
-                            }    
+                            type: "success",
+                            title: "¡La categoría ha sido guardada correctamente!",
+                            showConfirmButton: true,
+                            confirButtonText: "Cerrar"
+                            }).then(function(result){
+                                if (result.value) {
+                                    window.location = "categorias";
+                                }    
                         })
-                    </script>`;
+                    </script>';
                 }
                 
             }else{
-                echo `<script>
+                echo '<script>
                     Swal.fire({
                         type: "error",
                         title: "¡La categoría no puede ir vacía o llevar caracteres especiales!",
-                        showConfirmButtonText: "Cerrar",
-                        closeOnf Confirm: false
-                        }).then(function result(){
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                        }).then(function(result){
                             if (result.value) {
                                 window.location = "categorias";
                             }    
                         })
-                </script>`;
+                </script>';
             }
         }
     }
