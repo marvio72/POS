@@ -53,7 +53,7 @@
                             foreach ($usuarios as $key => $value) {
                                 // var_dump($value['nombre']);
                                 echo '<tr>
-                                        <td>' . $value['id'] . '</td>
+                                        <td>' . ($key+1) . '</td>
                                         <td>' . $value['nombre'] . '</td>
                                         <td>' . $value['usuario'] . '</td>';
 
