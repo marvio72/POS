@@ -1,45 +1,139 @@
 <div class="content-wrapper">
 
-<section class="content-header">
-    <h1>
-        Administrar categorías
-        
-    </h1>
+    <section class="content-header">
+        <h1>
+            Administrar Categorías
 
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <!-- <li><a href="#">Examples</a></li> -->
-        <li class="active">Administrar categorias</li>
-    </ol>
+        </h1>
 
-</section> <!--Fin .content-header-->
+        <ol class="breadcrumb">
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <!-- <li><a href="#">Examples</a></li> -->
+            <li class="active">Administrar Categorías</li>
+        </ol>
 
-<!-- Main content -->
-<section class="content">
+    </section>
+    <!--Fin .content-header-->
 
-    <!-- Default box -->
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
+    <!-- Main content -->
+    <section class="content">
 
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fa fa-times"></i></button>
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
+                    Agregar categoría
+                </button>
+
+
             </div>
-        </div>
-        <div class="box-body">
-            Start creating your amazing application!
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-            Footer
-        </div>
-        <!-- /.box-footer-->
-    </div>
-    <!-- /.box -->
+            <div class="box-body">
+                <table class="table table-bordered table-striped dt-responsive tablas">
+                    <thead>
+                        <tr>
+                            <th style="width:10px">#</th>
+                            <th>Categoría</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>EQUIPOS ELECTROMECÁNICOS</td>
 
-</section>
-<!-- /.content -->
+                            <td>
+                                <div class="bt-group">
+                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>EQUIPOS ELECTROMECÁNICOS</td>
+
+                            <td>
+                                <div class="bt-group">
+                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>EQUIPOS ELECTROMECÁNICOS</td>
+
+                            <td>
+                                <div class="bt-group">
+                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+
+        </div>
+        <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+</div>
+
+<!--***************   *** Comentario *** ****************
+/* MODAL AGREGAR CATEGORIA
+/*****************   *** ********** *** ****************-->
+<!-- MODAL -->
+<div id="modalAgregarCategoria" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <form role="form" method="post">
+                <!--***************   *** Comentario *** ****************
+            /* CABEZA DEL MODAL
+            /*****************   *** ********** *** ****************-->
+
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar Categoría</h4>
+                </div>
+                <!--***************   *** Comentario *** ****************
+            /* CUERPO DEL MODAL
+            /*****************   *** ********** *** ****************-->
+
+                <div class="modal-body">
+                    <div class="box-body">
+                        <!--Categoria-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar Categoría">
+
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--***************   *** Comentario *** ****************
+            /* PIE DEL MODAL
+            /*****************   *** ********** *** ****************-->
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                    <button type="submit" class="btn btn-primary">Guardar categoría</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
 </div>
