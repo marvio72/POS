@@ -60,7 +60,9 @@ session_start();
     <!-- Sweetalert 2-->
     <script src="views/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
+    <script src ="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
+
 </head>
 
 
@@ -135,6 +137,8 @@ session_start();
 
     <script src="views/js/plantilla.js"></script>
     <script src="views/js/usuarios.js"></script>
+    <script src="views/js/categorias.js"></script>
+
 </body>
 
 </html>

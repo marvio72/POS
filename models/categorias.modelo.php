@@ -53,4 +53,27 @@ class ModeloCategorias{
         $stmt->close();
         $stmt = null;
     }
+
+    /*====================Comentario====================
+    EDITAR CATEGORIA
+    ==================================================*/
+
+    public static function mdlEditarCategoria($tabla, $datos){
+
+        $stmt =  Conexion::conectar()->prepare("UPDATE $tabla SET categoria = :categoria WHERE id = :id");
+
+        $stmt->bindParam(":categoria", $datos["categoria"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+        } else {
+
+            return "error";
+        }
+        $stmt->close();
+        $stmt = null;
+
+    }
 }
