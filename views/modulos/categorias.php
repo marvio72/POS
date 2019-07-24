@@ -107,7 +107,8 @@
 
                                 <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar Categoría">
+                                <input type="text" class="form-control input-lg" id="nuevaCategoria" name="nuevaCategoria" placeholder="Ingresar Categoría" required>
+
 
                             </div>
 
@@ -180,7 +181,7 @@
 
                     </div>
                 </div>
-            <!--***************   *** Comentario *** ****************
+                <!--***************   *** Comentario *** ****************
             /* PIE DEL MODAL
             /*****************   *** ********** *** ****************-->
 
@@ -194,8 +195,8 @@
 
                 <?php
 
-                    $editarCategoria = new ControladorCategorias();
-                    $editarCategoria->ctrEditarCategoria();
+                $editarCategoria = new ControladorCategorias();
+                $editarCategoria->ctrEditarCategoria();
 
                 ?>
             </form>
@@ -206,7 +207,7 @@
 
 <?php
 
-    $borrarCategoria = new ControladorCategorias();
-    $borrarCategoria -> ctrBorrarCategoria();
+$borrarCategoria = new ControladorCategorias();
+$borrarCategoria->ctrBorrarCategoria();
 
 ?>

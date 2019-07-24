@@ -11,6 +11,45 @@ class ControladorCategorias{
             
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevaCategoria"] )) {
 
+                /*====================Comentario====================
+                VALIDAR SI EXITE LA CATEGORIA
+                ==================================================*/
+                $item = "categoria";
+                $valor = $_POST['nuevaCategoria'];
+                $tabla = "categorias";
+
+                $validar = ModeloCategorias::mdlMostrarCategorias($tabla, $item, $valor);
+
+
+                if ($validar['categoria'] == $_POST['nuevaCategoria']) {
+                    $datos = [];
+                    echo '<script>
+                    
+
+					swal.fire({
+
+						type: "error",
+						title: "¡La categoria ya existe en la base de datos!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+
+					}).then(function(result){
+
+						if(result.value){
+						
+							window.location = "categorias";
+
+						}
+
+					});
+				    </script>';
+                    die();
+                };
+
+                /*====================Comentario====================
+                FIN DE LA VALIDACION DE CATEGORIA EXISTENTE
+                ==================================================*/
+
                 $tabla = "categorias";
 
                 $datos = $_POST['nuevaCategoria'];
@@ -71,6 +110,7 @@ class ControladorCategorias{
         if (isset($_POST['editarCategoria'])) {
 
             if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"])) {
+
 
                 $tabla = "categorias";
 
