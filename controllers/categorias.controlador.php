@@ -109,5 +109,36 @@ class ControladorCategorias{
             }
         }
     }
+
+    /*====================Comentario====================
+    BORRAR CATEGORIA
+    ==================================================*/
+    public static function ctrBorrarCategoria(){
+
+        if (isset($_GET['idCategoria'])) {
+            
+            $tabla = "categorias";
+            $datos = $_GET['idCategoria'];
+
+            $respuesta = ModeloCategorias::mdlBorrarCategoria($tabla,$datos);
+
+            if ($respuesta == "ok") {
+                
+                echo '<script>
+                    Swal.fire({
+                            type: "success",
+                            title: "¡La categoría ha sido borrada correctamente!",
+                            showConfirmButton: true,
+                            confirButtonText: "Cerrar",
+                            closeOnConfirm: false
+                            }).then(function(result){
+                                if (result.value) {
+                                    window.location = "categorias";
+                                }    
+                        })
+                </script>';
+            }
+        }
+    }
 }
  
