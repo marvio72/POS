@@ -35,6 +35,8 @@ session_start();
     <!-- DataTables-->
     <link rel="stylesheet" href="views/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="views/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="views/plugins/iCheck/all.css">
 
     <!-- // ──────────────────────────────────────────────────────────────────────
     //   :::::: P L U G I N S   J S : :  :   :    :     :        :          :
@@ -61,7 +63,9 @@ session_start();
     <script src="views/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
-    <script src ="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
+    <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="views/plugins/iCheck/icheck.min.js"></script>
 
 </head>
 
