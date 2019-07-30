@@ -119,6 +119,38 @@
 
                 <div class="modal-body">
                     <div class="box-body">
+
+                        <!--CATEGORÍA-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                                <select class="form-control input-lg" name="nuevaCategoria" id="nuevaCategoria">
+
+                                    <option value="">Seleccionar Categoría</option>
+
+                                    <?php
+                                    
+                                        $item = null;
+                                        $valor = null;
+
+                                        $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                                        foreach ($categorias as $key => $value) {
+                                            
+                                            echo '<option value="'.$value["id"].'">'.$value[categoria].'</option>';
+                                        }
+                                    
+                                    ?>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
                         <!--CÓDIGO-->
                         <div class="form-group">
 
@@ -126,7 +158,7 @@
 
                                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevoCodigo" placeholder="Ingresar Código" required>
+                                <input type="text" class="form-control input-lg"  id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar Código"  readonly required>
 
                             </div>
 
@@ -139,29 +171,6 @@
                                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
                                 <input type="text" class="form-control input-lg" name="nuevoDescripcion" placeholder="Ingresar Descripción" required>
-
-                            </div>
-
-                        </div>
-
-                        <!--CATEGORÍA-->
-                        <div class="form-group">
-
-                            <div class="input-group">
-
-                                <span class="input-group-addon"><i class="fa fa-th"></i></span>
-
-                                <select class="form-control input-lg" name="nuevaCategoria">
-
-                                    <option value="">Seleccionar Categoría</option>
-
-                                    <option value="Taladros">Taladros</option>
-
-                                    <option value="Andamios">Andamios</option>
-
-                                    <option value="Equipos para la construcción">Equipos para la construcción</option>
-
-                                </select>
 
                             </div>
 
