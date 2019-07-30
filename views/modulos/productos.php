@@ -29,7 +29,7 @@
 
             </div>
             <div class="box-body">
-                <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+                <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
                     <thead>
                         <tr>
                             <th style="width:10px">#</th>
@@ -45,46 +45,46 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <!-- <tbody>
 
                     <?php
-                    
-                        $item = null;
-                        $valor = null;
 
-                        $productos = ControladorProductos::ctrMostrarProductos($item,$valor);
+                    // $item = null;
+                    // $valor = null;
 
-                        foreach ($productos as $key => $value) {
-                            
-                            echo '<tr>
-                                        <td>'.($key + 1).'</td>
-                                        <td><img src="views/img/Productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                                        <td>'.$value["codigo"].'</td>
-                                        <td>'.$value["descripcion"].'</td>';
+                    // $productos = ControladorProductos::ctrMostrarProductos($item, $valor);
 
-                                        $item = "id";
-                                        $valor = $value["id_categoria"];
+                    // foreach ($productos as $key => $value) {
 
-                                        $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                    //     echo '<tr>
+                    //                     <td>' . ($key + 1) . '</td>
+                    //                     <td><img src="views/img/Productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
+                    //                     <td>' . $value["codigo"] . '</td>
+                    //                     <td>' . $value["descripcion"] . '</td>';
 
-                                        echo '<td>'.$categoria["categoria"].'</td>
-                                        <td>'.$value["stock"].'</td>
-                                        <td>'.$value["precio_compra"].'</td>
-                                        <td>'.$value["precio_venta"].'</td>
-                                        <td>'.$value["fecha"].'</td>
-                                        <td>
-                                            <div class="bt-group">
-                                                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>';
-                        }
-                    
+                    //     $item = "id";
+                    //     $valor = $value["id_categoria"];
+
+                    //     $categoria = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                    //     echo '<td>' . $categoria["categoria"] . '</td>
+                    //                     <td>' . $value["stock"] . '</td>
+                    //                     <td>' . $value["precio_compra"] . '</td>
+                    //                     <td>' . $value["precio_venta"] . '</td>
+                    //                     <td>' . $value["fecha"] . '</td>
+                    //                     <td>
+                    //                         <div class="bt-group">
+                    //                             <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                    //                             <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                    //                         </div>
+                    //                     </td>
+                    //                 </tr>';
+                    // }
+
                     ?>
                        
 
-                    </tbody>
+                    </tbody> -->
                 </table>
             </div>
             <!-- /.box-body -->
