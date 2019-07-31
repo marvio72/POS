@@ -83,3 +83,57 @@ $('#nuevaCategoria').change(function (e) {
     });
     
 });
+
+/*==============================================================================================
+AGREGANDO PRECIO DE VENTA
+==============================================================================================*/
+$('#nuevoPrecioCompra').change(function (e) { 
+    e.preventDefault();
+    
+    if ($('.porcentaje').prop('checked')) {
+        var valorPorcentaje = $('.nuevoPorcentaje').val();
+
+        // var porcentaje = Number($('#nuevoPrecioCompra').val() * valorPorcentaje / 100) + Number($('#nuevoPrecioCompra').val()); // NOTE: PORCENTAJE NORMAL
+
+        var porcentaje = $('#nuevoPrecioCompra').val() / (1 - (valorPorcentaje / 100));
+
+        $("#nuevoPrecioVenta").val(porcentaje.toFixed(2));
+        // $("#nuevoPrecioVenta").val(porcentaje);
+
+        $("#nuevoPrecioVenta").prop('readonly', true);
+
+    }
+});
+
+/*==============================================================================================
+CAMBIO DE PORCENTAJE
+==============================================================================================*/
+$('.nuevoPorcentaje').change(function (e) { 
+    e.preventDefault();
+    
+    if ($('.porcentaje').prop('checked')) {
+        var valorPorcentaje = $('.nuevoPorcentaje').val();
+
+        // var porcentaje = Number($('#nuevoPrecioCompra').val() * valorPorcentaje / 100) + Number($('#nuevoPrecioCompra').val()); // NOTE: PORCENTAJE NORMAL
+
+        var porcentaje = $('#nuevoPrecioCompra').val() / (1 - (valorPorcentaje / 100));
+
+        $("#nuevoPrecioVenta").val(porcentaje.toFixed(2));
+        // $("#nuevoPrecioVenta").val(porcentaje);
+
+        $("#nuevoPrecioVenta").prop('readonly', true);
+
+    }
+});
+
+/*==============================================================================================
+ACTIVAR Y DESACTIVAR EL CHECK CON ICHECH
+==============================================================================================*/
+
+$('.porcentaje').on('ifUnchecked',function() {
+    $("#nuevoPrecioVenta").prop('readonly', false);
+});
+
+$('.porcentaje').on('ifChecked',function() {
+    $("#nuevoPrecioVenta").prop('readonly', true);
+});

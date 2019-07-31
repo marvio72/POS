@@ -132,17 +132,17 @@
                                     <option value="">Seleccionar Categoría</option>
 
                                     <?php
-                                    
-                                        $item = null;
-                                        $valor = null;
 
-                                        $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+                                    $item = null;
+                                    $valor = null;
 
-                                        foreach ($categorias as $key => $value) {
-                                            
-                                            echo '<option value="'.$value["id"].'">'.$value[categoria].'</option>';
-                                        }
-                                    
+                                    $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+
+                                    foreach ($categorias as $key => $value) {
+
+                                        echo '<option value="' . $value["id"] . '">' . $value["categoria"] . '</option>';
+                                    }
+
                                     ?>
 
                                 </select>
@@ -158,7 +158,7 @@
 
                                 <span class="input-group-addon"><i class="fa fa-code"></i></span>
 
-                                <input type="text" class="form-control input-lg"  id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar Código"  readonly required>
+                                <input type="text" class="form-control input-lg" id="nuevoCodigo" name="nuevoCodigo" placeholder="Ingresar Código" readonly required>
 
                             </div>
 
@@ -170,7 +170,7 @@
 
                                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevoDescripcion" placeholder="Ingresar Descripción" required>
+                                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar Descripción" required>
 
                             </div>
 
@@ -197,7 +197,7 @@
 
                                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
 
-                                    <input type="number" class="form-control input-lg" name="nuevoPrecioCompra" min="0" placeholder="Precio de Compra" required>
+                                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" placeholder="Precio de Compra" required>
 
                                 </div>
 
@@ -212,7 +212,7 @@
 
                                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
 
-                                    <input type="number" class="form-control input-lg" name="nuevoPrecioVenta" min="0" placeholder="Precio de Venta" required>
+                                    <input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" min="0" placeholder="Precio de Venta" required>
 
                                 </div>
 
@@ -278,6 +278,13 @@
 
                 </div>
             </form>
+
+            <?php
+            
+                $crearProducto = new ControladorProductos();
+                $crearProducto -> ctrCrearProducto(); 
+            
+            ?>
         </div>
 
     </div>
