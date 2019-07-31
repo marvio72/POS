@@ -183,7 +183,7 @@
 
                                 <span class="input-group-addon"><i class="fa fa-check"></i></span>
 
-                                <input type="number" class="form-control input-lg" name="nuevoStock" min="0" placeholder="Stock" required>
+                                <input type="number" class="form-control input-lg" name="nuevoStock" min="0" step="any" placeholder="Stock" required>
 
                             </div>
 
@@ -191,13 +191,13 @@
                         <!--PRECIO COMPRA-->
                         <div class="form-group row">
 
-                            <div class="col-xs-6">
+                            <div class="col-xs-12 col-sm-6">
 
                                 <div class="input-group">
 
                                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
 
-                                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" placeholder="Precio de Compra" required>
+                                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" step="any" placeholder="Precio de Compra" required>
 
                                 </div>
 
@@ -206,9 +206,9 @@
 
                             <!--PRECIO VENTA-->
 
-                            <div class="col-xs-6">
+                            <div class="col-xs-12 col-sm-6">
 
-                                <div class="input-group col-6">
+                                <div class="input-group">
 
                                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
 
@@ -280,10 +280,10 @@
             </form>
 
             <?php
-            
-                $crearProducto = new ControladorProductos();
-                $crearProducto -> ctrCrearProducto(); 
-            
+
+            $crearProducto = new ControladorProductos();
+            $crearProducto->ctrCrearProducto();
+
             ?>
         </div>
 
