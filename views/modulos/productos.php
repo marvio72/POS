@@ -252,15 +252,15 @@
 
                         </div>
                         <!--ENTRADA PARA SUBIR FOTO-->
-                        <div class="form-group">
+                        <div class="form-group"> 
 
                             <div class="panel">SUBIR IMAGEN</div>
 
-                            <input type="file" name="nuevaImagen" id="nuevaImagen">
+                            <input type="file" class="nuevaImagen" name="nuevaImagen">
 
                             <p class="help-block">Peso máximo de la imagen 2MB</p>
 
-                            <img src="views/img/productos/default/anonymous.png" class="img-thumbnail" width="100px">
+                            <img src="views/img/productos/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
                         </div>
 
