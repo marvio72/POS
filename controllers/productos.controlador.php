@@ -271,5 +271,51 @@ class ControladorProductos{
             }
         }
     }
+
+    /*====================Comentario====================
+    BORRAR PRODUCTO
+    ==================================================*/
+
+    public static function ctrEliminarProducto(){
+
+        if (isset($_GET['idProducto'])) {
+            
+            $tabla = "productos";
+            $datos = $_GET['idProducto'];
+
+            /*====================Comentario====================
+            BORRAR CARPETA DE IMAGEN
+            ==================================================*/
+
+            if ($_GET['imagen'] != "" && $_GET['imagen'] != "views/img/productos/default/anonymous.png"){
+
+                unlink($_GET['imagen']);
+                rmdir('views/img/productos/'.$_GET['codigo']);
+
+            }
+
+            $respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+
+				swal.fire({
+					  type: "success",
+					  title: "El producto ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "productos";
+
+								}
+							})
+
+				</script>';
+            }
+        }
+
+    }
 }
  

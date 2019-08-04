@@ -210,8 +210,6 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
         dataType: "json",
         success: function(respuesta){
 
-            console.log('respuesta: ', respuesta);
-
             var datosCategoria = new FormData();
             datosCategoria.append("idCategoria", respuesta["id_categoria"]);
 
@@ -246,4 +244,36 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
     });
     
     
+});
+
+/*==============================================================================================
+ELIMINAR PRODUCTO
+==============================================================================================*/
+$(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function () {
+
+    var idProducto = $(this).attr("idProducto");
+    
+    var codigo = $(this).attr("codigo");
+    
+    var imagen = $(this).attr("imagen");
+    
+    swal.fire({
+
+        title: '¿Está seguro de borrar el producto?',
+        text: "¡Si no lo está puede cancelar la accíón!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar producto!'
+    }).then(function (result) {
+        if (result.value) {
+
+            window.location = "index.php?ruta=productos&idProducto=" + idProducto + "&imagen=" + imagen + "&codigo=" + codigo;
+
+        }
+
+
+    });
 });

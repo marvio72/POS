@@ -53,7 +53,7 @@ class TablaProductos{
                 /*====================Comentario====================
                     TRAEMOS LAS ACCIONES
                 ==================================================*/
-                $botones = "<div class='bt-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";
+                $botones = "<div class='bt-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";
 
                 /*====================Comentario====================
                 TRAEMOS CADA UNO DE LOS REGISTROS DE LA BASE DE DATOS
