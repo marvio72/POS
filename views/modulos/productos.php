@@ -392,7 +392,7 @@
 
                                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
 
-                                    <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" min="0" step="any" required>
+                                    <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" min="0" step="any" readonly required>
 
                                 </div>
 
@@ -431,7 +431,7 @@
                             </div>
 
                         </div>
-                        <!--ENTRADA PARA SUBIR FOTO-->
+                        <!--EDITAR PARA SUBIR FOTO-->
                         <div class="form-group">
 
                             <div class="panel">SUBIR IMAGEN</div>
@@ -461,12 +461,12 @@
                 </div>
             </form>
 
-            <!-- <?php
+            <?php
 
-            // $editarProducto = new ControladorProductos();
-            // $editarProducto->ctrEditarProducto();
+                $editarProducto = new ControladorProductos();
+                $editarProducto->ctrEditarProducto();
 
-            ?> -->
+            ?>
         </div>
 
     </div>

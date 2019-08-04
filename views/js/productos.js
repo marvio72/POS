@@ -74,11 +74,7 @@ $('#nuevaCategoria').change(function (e) {
             }else{
                 nuevoCodigo = Number(respuesta['codigo']) + 1;
                 $("#nuevoCodigo").val(nuevoCodigo);
-            }
-
-            
-            
-      
+            }      
         }
     });
     
@@ -87,7 +83,7 @@ $('#nuevaCategoria').change(function (e) {
 /*==============================================================================================
 AGREGANDO PRECIO DE VENTA
 ==============================================================================================*/
-$('#nuevoPrecioCompra').change(function (e) { 
+$('#nuevoPrecioCompra, #editarPrecioCompra').change(function (e) { 
     e.preventDefault();
     
     if ($('.porcentaje').prop('checked')) {
@@ -96,11 +92,14 @@ $('#nuevoPrecioCompra').change(function (e) {
         // var porcentaje = Number($('#nuevoPrecioCompra').val() * valorPorcentaje / 100) + Number($('#nuevoPrecioCompra').val()); // NOTE: PORCENTAJE NORMAL
 
         var porcentaje = $('#nuevoPrecioCompra').val() / (1 - (valorPorcentaje / 100));
+        var editarPorcentaje = $('#editarPrecioCompra').val() / (1 - (valorPorcentaje / 100));
 
         $("#nuevoPrecioVenta").val(porcentaje.toFixed(2));
         // $("#nuevoPrecioVenta").val(porcentaje);
-
         $("#nuevoPrecioVenta").prop('readonly', true);
+        
+        $("#editarPrecioVenta").val(editarPorcentaje.toFixed(2));
+        $("#editarPrecioVenta").prop('readonly', true);
 
     }
 });
@@ -112,17 +111,21 @@ $('.nuevoPorcentaje').change(function (e) {
     e.preventDefault();
     
     if ($('.porcentaje').prop('checked')) {
-        var valorPorcentaje = $('.nuevoPorcentaje').val();
+
+        var valorPorcentaje = $(this).val();
 
         // var porcentaje = Number($('#nuevoPrecioCompra').val() * valorPorcentaje / 100) + Number($('#nuevoPrecioCompra').val()); // NOTE: PORCENTAJE NORMAL
 
         var porcentaje = $('#nuevoPrecioCompra').val() / (1 - (valorPorcentaje / 100));
+        var editarPorcentaje = $('#editarPrecioCompra').val() / (1 - (valorPorcentaje / 100));
 
         $("#nuevoPrecioVenta").val(porcentaje.toFixed(2));
         // $("#nuevoPrecioVenta").val(porcentaje);
-
         $("#nuevoPrecioVenta").prop('readonly', true);
-
+        
+        $("#editarPrecioVenta").val(editarPorcentaje.toFixed(2));
+        // $("#editarPrecioVenta").val(porcentaje);
+        $("#editarPrecioVenta").prop('readonly', true);
     }
 });
 
@@ -132,10 +135,12 @@ ACTIVAR Y DESACTIVAR EL CHECK CON ICHECH
 
 $('.porcentaje').on('ifUnchecked',function() {
     $("#nuevoPrecioVenta").prop('readonly', false);
+    $("#editarPrecioVenta").prop('readonly', false);
 });
 
 $('.porcentaje').on('ifChecked',function() {
     $("#nuevoPrecioVenta").prop('readonly', true);
+    $("#editarPrecioVenta").prop('readonly', true);
 });
 
 /*==============================================================================================
@@ -204,6 +209,8 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
         processData: false,
         dataType: "json",
         success: function(respuesta){
+
+            console.log('respuesta: ', respuesta);
 
             var datosCategoria = new FormData();
             datosCategoria.append("idCategoria", respuesta["id_categoria"]);
