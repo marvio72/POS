@@ -140,17 +140,49 @@
                         </div>
 
                         <!--STOCK-->
-                        <div class="form-group">
+                        <div class="form-group row">
 
-                            <div class="input-group">
+                            <div class="col-xs-12 col-sm-6">
 
-                                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                <div class="input-group">
 
-                                <input type="number" class="form-control input-lg" name="nuevoStock" min="0" step="any" placeholder="Stock" required>
+                                    <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                    <input type="number" class="form-control input-lg" name="nuevoStock" min="0" step="any" placeholder="Stock" required>
+
+                                </div>
+
+                            </div>
+                            <!-- STOCK MAX -->
+                            <div class="col-xs-12 col-sm-3">
+
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-chevron-up"></i></span>
+
+                                    <input type="number" class="form-control input-lg" name="nuevoStockMax" id="nuevoStockMax" min="0" step="any" placeholder="S+" required>
+
+                                </div>
+
+                            </div>
+                            <!-- STOCK MIN -->
+                            <div class="col-xs-12 col-sm-3">
+
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-chevron-down"></i></span>
+
+                                    <input type="number" class="form-control input-lg" name="nuevoStockMin" id="nuevoStockMin" min="0" step="any" placeholder="S-" required>
+
+                                </div>
 
                             </div>
 
+                            <input type="hidden" class="stockError">
+                            <!-NOTE Es usado para mostrar el error de stocks--->
+
                         </div>
+                        <!--ROW STOCK-->
                         <!--PRECIO COMPRA-->
                         <div class="form-group row">
 
@@ -320,17 +352,46 @@
                         </div>
 
                         <!--STOCK-->
-                        <div class="form-group">
+                        <div class="form-group row">
 
-                            <div class="input-group">
+                            <div class="col-xs-12 col-sm-6">
 
-                                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                <div class="input-group">
 
-                                <input type="number" class="form-control input-lg" name="editarStock" id="editarStock" min="0" required>
+                                    <span class="input-group-addon"><i class="fa fa-check"></i></span>
+
+                                    <input type="number" class="form-control input-lg" name="editarStock" id="editarStock" min="0" required>
+
+                                </div>
 
                             </div>
+                            <!-- STOCK MAX  -->
+                            <div class="col-xs-12 col-sm-3">
 
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-chevron-up"></i></span>
+
+                                    <input type="number" class="form-control input-lg" name="editarStockMax" id="editarStockMax" min="0" required>
+
+                                </div>
+
+                            </div>
+                            <!-- STOCK MIN -->
+                            <div class="col-xs-12 col-sm-3">
+
+                                <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="fa fa-chevron-down"></i></span>
+
+                                    <input type="number" class="form-control input-lg" name="editarStockMin" id="editarStockMin" min="0" required>
+
+                                </div>
+
+                            </div>
+                            <input type="hidden" class="stockError"> <!-NOTE Es usado para mostrar el error de stocks--->
                         </div>
+                        <!--ROW-->
                         <!--PRECIO COMPRA-->
                         <div class="form-group row">
 
@@ -388,7 +449,7 @@
                                         <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
                                     </div>
-  
+
                                 </div>
 
                             </div>
@@ -426,8 +487,8 @@
 
             <?php
 
-                $editarProducto = new ControladorProductos();
-                $editarProducto->ctrEditarProducto();
+            $editarProducto = new ControladorProductos();
+            $editarProducto->ctrEditarProducto();
 
             ?>
         </div>
@@ -437,7 +498,7 @@
 
 <?php
 
-    $eliminarProducto = new ControladorProductos();
-    $eliminarProducto->ctrEliminarProducto();
+$eliminarProducto = new ControladorProductos();
+$eliminarProducto->ctrEliminarProducto();
 
 ?>

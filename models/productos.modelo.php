@@ -43,13 +43,15 @@ class ModeloProductos{
 
         $ventas = 0;
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, codigo, descripcion, imagen, stock, precio_compra, precio_venta, ventas) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, :precio_compra, :precio_venta, :ventas)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, codigo, descripcion, imagen, stock, stock_max, stock_min, precio_compra, precio_venta, ventas) VALUES (:id_categoria, :codigo, :descripcion, :imagen, :stock, :stock_max, :stock_min, :precio_compra, :precio_venta, :ventas)");
        
         $stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
         $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
         $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
         $stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
         $stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
+        $stmt->bindParam(":stock_max", $datos["stock_max"], PDO::PARAM_STR);
+        $stmt->bindParam(":stock_min", $datos["stock_min"], PDO::PARAM_STR);
         $stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
         $stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
         $stmt->bindParam(":ventas", $ventas, PDO::PARAM_INT);
@@ -75,13 +77,15 @@ class ModeloProductos{
     public static function mdlEditarProducto($tabla, $datos){
 
     
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, descripcion = :descripcion, imagen = :imagen, stock = :stock, precio_compra = :precio_compra, precio_venta = :precio_venta WHERE codigo = :codigo");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_categoria = :id_categoria, descripcion = :descripcion, imagen = :imagen, stock = :stock, stock_max = :stock_max, stock_min = :stock_min, precio_compra = :precio_compra, precio_venta = :precio_venta WHERE codigo = :codigo");
        
         $stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
         $stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
         $stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
         $stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
         $stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
+        $stmt->bindParam(":stock_max", $datos["stock_max"], PDO::PARAM_STR);
+        $stmt->bindParam(":stock_min", $datos["stock_min"], PDO::PARAM_STR);
         $stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
         $stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
 

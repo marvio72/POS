@@ -130,6 +130,46 @@ $('.nuevoPorcentaje').change(function (e) {
 });
 
 /*==============================================================================================
+STOCK MIN MENOR QUE ESTOCK MAX
+==============================================================================================*/
+$("#nuevoStockMin, #editarStockMin, #nuevoStockMax, #editarStockMax").change(function (e) {
+    e.preventDefault();
+
+    $(".alert").remove();
+
+    var nStockMax   = $("#nuevoStockMax").val();
+    var nStockMin   = $("#nuevoStockMin").val();
+    var stMin       = $('#nuevoStockMin');
+    var nStockError = $('.stockError');
+    
+    var eStockMax   = $("#editarStockMax").val();
+    var eStockMin   = $("#editarStockMin").val();
+    var estMin      = $('#editarStockMin');
+
+    
+    
+        
+    if (parseInt(nStockMin) >= parseInt(nStockMax)) {
+
+        nStockError.parent().after('<div class="alert alert-warning">El Stock Min debe ser menor que Stock Max</div>');
+
+        stMin.focus();
+
+    }    
+    
+    
+    if (parseInt(eStockMin) >= parseInt(eStockMax)) {
+
+        nStockError.parent().after('<div class="alert alert-warning">El Stock Min debe ser menor que Stock Max</div>');
+
+        estMin.focus();
+
+    }
+
+    
+});
+
+/*==============================================================================================
 ACTIVAR Y DESACTIVAR EL CHECK CON ICHECH
 ==============================================================================================*/
 
@@ -210,7 +250,7 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
         dataType: "json",
         success: function(respuesta){
 
-            var datosCategoria = new FormData();
+            datosCategoria = new FormData();
             datosCategoria.append("idCategoria", respuesta["id_categoria"]);
 
             $.ajax({
@@ -225,13 +265,14 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
 
                     $("#editarCategoria").val(respuesta["id"]);
                     $("#editarCategoria").html(respuesta["categoria"]);
-                    
                 }   
             });
             
             $("#editarCodigo").val(respuesta["codigo"]);
             $("#editarDescripcion").val(respuesta["descripcion"]);
             $("#editarStock").val(respuesta["stock"]);
+            $("#editarStockMax").val(respuesta["stock_max"]);
+            $("#editarStockMin").val(respuesta["stock_min"]);
             $("#editarPrecioCompra").val(respuesta["precio_compra"]);
             $("#editarPrecioVenta").val(respuesta["precio_venta"]);
 
@@ -242,7 +283,6 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
     
         }
     });
-    
     
 });
 
@@ -277,3 +317,4 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function ()
 
     });
 });
+
