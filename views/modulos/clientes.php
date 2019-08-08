@@ -341,9 +341,9 @@
     </div>
 </div>
 
-<!-- <?php
+<?php
 
-    // $borrarCliente = new ControladorClientes();
-    // $borrarCliente->crtEliminarCliente();
+    $borrarCliente = new ControladorClientes();
+    $borrarCliente->crtEliminarCliente();
 
-?> -->
+?>

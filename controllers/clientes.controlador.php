@@ -153,5 +153,35 @@ class ControladorClientes{
             }
         }
     }
+    /*====================Comentario====================
+    BORRAR CLIENTE
+    ==================================================*/
+    public static function crtEliminarCliente(){
+        if (isset($_GET['idCliente'])) {
+
+            $tabla = "clientes";
+            $datos = $_GET['idCliente'];
+
+            $respuesta = ModeloClientes::mdlEliminarCliente($tabla, $datos);
+
+            if ($respuesta == "ok") {
+
+                echo '<script>
+                        Swal.fire({
+                                type: "success",
+                                title: "¡El cliente ha sido borrado correctamente!",
+                                showConfirmButton: true,
+                                confirButtonText: "Cerrar",
+                                closeOnConfirm: false
+                                }).then(function(result){
+                                    if (result.value) {
+                                        window.location = "clientes";
+                                    }    
+                            })
+                    </script>';
+            }
+        }
+    }
+    
 
 }
