@@ -73,4 +73,85 @@ class ControladorClientes{
         }
 
     }
+    /*====================Comentario====================
+    Mostrar Clientes
+    ==================================================*/
+    public static function crtMostrarClientes($item, $valor){
+        
+        $tabla = "clientes";
+
+        $respuesta = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
+
+        return $respuesta;
+    }
+
+    /*====================Comentario====================
+    EDITAR CLIENTE
+    ==================================================*/
+    public static function crtEditarCliente()
+    {
+
+        if (isset($_POST['idCliente'])) {
+
+            if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['editarCliente']) &&
+                preg_match('/^[a-zA-Z0-9]+$/', $_POST['editarRfc']) &&
+                preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST['editarEmail']) &&
+                preg_match('/^[()\-0-9 ]+$/', $_POST['editarTelefono']) &&
+                preg_match('/^[#\.\,\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['editarDireccion'])){
+
+                $rfc = strtoupper($_POST['editarRfc']);
+
+                $tabla = 'clientes';
+                $datos = array(
+                    'id'               => $_POST['idCliente'],
+                    'nombre'           => $_POST['editarCliente'],
+                    'rfc'              => $rfc,
+                    'email'            => $_POST['editarEmail'],
+                    'telefono'         => $_POST['editarTelefono'],
+                    'direccion'        => $_POST['editarDireccion'],
+                    'fecha_nacimiento' => $_POST['editarFechaNacimiento']
+                );
+
+                $respuesta = ModeloClientes::mdlEditarCliente($tabla, $datos);
+
+                if ($respuesta == "ok") {
+
+                    echo '<script>
+
+					swal.fire({
+						  type: "success",
+						  title: "El cliente ha sido cambiado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "clientes";
+
+									}
+								})
+
+					</script>';
+                }
+            } else {
+                echo '<script>
+
+					swal.fire({
+						  type: "error",
+						  title: "¡El cliente no puede ir vacío o llevar caracteres especiales!",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+							if (result.value) {
+
+							window.location = "clientes";
+
+							}
+						})
+
+			  	</script>';
+            }
+        }
+    }
+
 }

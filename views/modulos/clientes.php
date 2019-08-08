@@ -46,26 +46,41 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Juan Villegas</td>
-                            <td>ViGJ750221GI2</td>
-                            <td>juan21@hotmail.com</td>
-                            <td>33 9871 2312</td>
-                            <td>Eucaliptos 327 Arboledas</td>
-                            <td>1975-02-21</td>
-                            <td>12</td>
-                            <td>2019-08-06 12:03:22</td>
-                            <td>2019-08-06 11:34:92</td>
+                        <?php
 
-                            <td>
-                                <div class="bt-group">
-                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        
+                        $item     = null;
+                        $valor    = null;
+
+                        $clientes = ControladorClientes::crtMostrarClientes($item, $valor);
+
+                        foreach ($clientes as $key => $value) {
+                            echo '<tr>
+                                        <td>' . ($key + 1) . '</td>
+                                        <td>' . $value['nombre'] . '</td>
+                                        <td>' . $value['rfc'] . '</td>
+                                        <td>' . $value['email'] . '</td>
+                                        <td>' . $value['telefono'] . '</td>
+                                        <td>' . $value['direccion'] . '</td>
+                                        <td>' . $value['fecha_nacimiento'] . '</td>
+                                        <td>' . $value['compras'] . '</td>
+                                        <td>0000-00-00 00:00:00</td>
+                                        <td>' . $value['fecha'] . '</td>
+                                        
+
+                                        <td>
+                                            <div class="bt-group">
+                                                <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="' . $value['id'] . '"><i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-danger btnEliminarCliente" idCliente="'.$value['id'].'"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>';
+                        }
+
+
+
+                        ?>
+
+
                     </tbody>
                 </table>
             </div>
@@ -93,7 +108,7 @@
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Agregar Categoría</h4>
+                    <h4 class="modal-title">Agregar Cliente</h4>
                 </div>
                 <!--***************   *** Comentario *** ****************
             /* CUERPO DEL MODAL
@@ -121,7 +136,7 @@
 
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                                <input type="text" class="form-control input-lg" name="nuevoRfc" placeholder="Ingresar RFC" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask  style="text-transform:uppercase" required>
+                                <input type="text" class="form-control input-lg" name="nuevoRfc" placeholder="Ingresar RFC" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask style="text-transform:uppercase" required>
 
                             </div>
 
@@ -178,7 +193,7 @@
                     </div>
 
                 </div>
-            <!--***************   *** Comentario *** ****************
+                <!--***************   *** Comentario *** ****************
             /* PIE DEL MODAL
             /*****************   *** ********** *** ****************-->
 
@@ -191,12 +206,144 @@
                 </div>
             </form>
             <?php
-            
-                $crearCliente = new ControladorClientes();
-                $crearCliente->crtCrearCliente();
-            
+
+            $crearCliente = new ControladorClientes();
+            $crearCliente->crtCrearCliente();
+
             ?>
         </div>
 
     </div>
 </div>
+
+<!--***************   *** Comentario *** ****************
+/* MODAL EDITAR CLIENTES
+/*****************   *** ********** *** ****************-->
+<!-- MODAL -->
+<div id="modalEditarCliente" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <form role="form" method="post">
+                <!--***************   *** Comentario *** ****************
+            /* CABEZA DEL MODAL
+            /*****************   *** ********** *** ****************-->
+
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar Cliente</h4>
+                </div>
+                <!--***************   *** Comentario *** ****************
+            /* CUERPO DEL MODAL
+            /*****************   *** ********** *** ****************-->
+
+                <div class="modal-body">
+
+                    <div class="box-body">
+                        <!--Cliente-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="editarCliente" id="editarCliente" required>
+
+                                <input type="hidden" name="idCliente" id="idCliente">
+
+                            </div>
+
+                        </div>
+                        <!--RFC-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="editarRfc" id="editarRfc" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask style="text-transform:uppercase" required>
+
+                            </div>
+
+                        </div>
+                        <!--EMAIL-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+                                <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail" required>
+
+                            </div>
+
+                        </div>
+                        <!--Teléfono-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="editarTelefono" id="editarTelefono" data-inputmask="'mask':'(99) 9999 9999'" data-mask required>
+
+                            </div>
+
+                        </div>
+                        <!--Dirección-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="editarDireccion" id="editarDireccion" required>
+
+                            </div>
+
+                        </div>
+                        <!--Fecha Nacimiento-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="editarFechaNacimiento" id="editarFechaNacimiento" data-inputmask="'alias':'yyyy/mm/dd'" data-mask required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--***************   *** Comentario *** ****************
+            /* PIE DEL MODAL
+            /*****************   *** ********** *** ****************-->
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+                </div>
+            </form>
+            <?php
+
+                $editarCliente = new ControladorClientes();
+                $editarCliente->crtEditarCliente();
+
+            ?>
+        </div>
+
+    </div>
+</div>
+
+<!-- <?php
+
+    // $borrarCliente = new ControladorClientes();
+    // $borrarCliente->crtEliminarCliente();
+
+?> -->
