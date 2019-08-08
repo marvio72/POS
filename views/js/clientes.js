@@ -54,3 +54,54 @@ $(".tablas").on("click", ".btnEliminarCliente", function() {
         }
     });
 });
+
+/*==============================================================================================
+VALIDAR SI EL RFC DEL CLIENTE YA EXISTE
+==============================================================================================*/
+
+$("#nuevoRfc").change(function () {
+
+    $(".alert").remove();
+
+    var cliente = $(this).val();
+    cliente = cliente.toUpperCase();
+
+    var datos = new FormData();
+
+    datos.append("validarCliente", cliente);
+
+    $.ajax({
+        url: "ajax/clientes.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+
+            var nuevoCliente = $("#nuevoRfc");
+
+            if (respuesta) {
+                nuevoCliente.parent().after('<div class="alert alert-warning">Este RFC ya existe en la base de datos</div>');
+
+                nuevoCliente.val("");
+
+                nuevoCliente.focus();
+            }
+
+        }
+
+    });
+});
+
+/*==============================================================================================
+LIMPIA EL FORMULARIO DE INGRESO DE USUARIOS EN EL MODAL
+==============================================================================================*/
+
+$("#modalAgregarCliente").on("hidden.bs.modal", function () {
+
+    $(this).find('form')[0].reset();
+
+    $(".alert").remove();
+});

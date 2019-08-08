@@ -16,6 +16,41 @@ class ControladorClientes{
                 preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST['nuevoEmail']) &&
                 preg_match('/^[()\-0-9 ]+$/', $_POST['nuevoTelefono']) && 
 			    preg_match('/^[#\.\,\-a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST['nuevaDireccion'])){
+
+                /*====================Comentario====================
+                VALIDAR SI EXISTE RFC
+                ==================================================*/    
+
+                $tabla = "clientes";
+                $item = "rfc";
+                $valor = strtoupper($_POST['nuevoRfc']);
+
+                $validar = ModeloClientes::mdlMostrarClientes($tabla, $item, $valor);
+                
+                if ($validar['rfc'] == $valor) {
+                    $datos = [];
+                    echo '<script>
+                    
+
+					swal.fire({
+
+						type: "error",
+						title: "¡El RFC del cliente ya existe en la base de datos!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+
+					}).then(function(result){
+
+						if(result.value){
+						
+							window.location = "clientes";
+
+						}
+
+					});
+				    </script>';
+                    die();
+                }
             
                 $rfc = strtoupper($_POST['nuevoRfc']);
                 
@@ -74,7 +109,7 @@ class ControladorClientes{
 
     }
     /*====================Comentario====================
-    Mostrar Clientes
+    MOSTRAR CLIENTES
     ==================================================*/
     public static function crtMostrarClientes($item, $valor){
         

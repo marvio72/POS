@@ -70,7 +70,7 @@
                                         <td>
                                             <div class="bt-group">
                                                 <button class="btn btn-warning btnEditarCliente" data-toggle="modal" data-target="#modalEditarCliente" idCliente="' . $value['id'] . '"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-danger btnEliminarCliente" idCliente="'.$value['id'].'"><i class="fa fa-times"></i></button>
+                                                <button class="btn btn-danger btnEliminarCliente" idCliente="' . $value['id'] . '"><i class="fa fa-times"></i></button>
                                             </div>
                                         </td>
                                     </tr>';
@@ -117,6 +117,18 @@
                 <div class="modal-body">
 
                     <div class="box-body">
+                        <!--RFC-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="nuevoRfc" id="nuevoRfc" placeholder="Ingresar RFC" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask style="text-transform:uppercase" required>
+
+                            </div>
+
+                        </div>
                         <!--Cliente-->
                         <div class="form-group">
 
@@ -125,18 +137,6 @@
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                                 <input type="text" class="form-control input-lg" name="nuevoCliente" placeholder="Ingresar nombre" required>
-
-                            </div>
-
-                        </div>
-                        <!--RFC-->
-                        <div class="form-group">
-
-                            <div class="input-group">
-
-                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                                <input type="text" class="form-control input-lg" name="nuevoRfc" placeholder="Ingresar RFC" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask style="text-transform:uppercase" required>
 
                             </div>
 
@@ -193,7 +193,7 @@
                     </div>
 
                 </div>
-                <!--***************   *** Comentario *** ****************
+            <!--***************   *** Comentario *** ****************
             /* PIE DEL MODAL
             /*****************   *** ********** *** ****************-->
 
@@ -240,6 +240,18 @@
                 <div class="modal-body">
 
                     <div class="box-body">
+                        <!--RFC-->
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                                <input type="text" class="form-control input-lg" name="editarRfc" id="editarRfc" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask style="text-transform:uppercase"  readonly required>
+
+                            </div>
+
+                        </div>
                         <!--Cliente-->
                         <div class="form-group">
 
@@ -250,18 +262,6 @@
                                 <input type="text" class="form-control input-lg" name="editarCliente" id="editarCliente" required>
 
                                 <input type="hidden" name="idCliente" id="idCliente">
-
-                            </div>
-
-                        </div>
-                        <!--RFC-->
-                        <div class="form-group">
-
-                            <div class="input-group">
-
-                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                                <input type="text" class="form-control input-lg" name="editarRfc" id="editarRfc" data-inputmask="'mask':'aaa[a]999999[***]'" data-mask style="text-transform:uppercase" required>
 
                             </div>
 
@@ -332,8 +332,8 @@
             </form>
             <?php
 
-                $editarCliente = new ControladorClientes();
-                $editarCliente->crtEditarCliente();
+            $editarCliente = new ControladorClientes();
+            $editarCliente->crtEditarCliente();
 
             ?>
         </div>
@@ -343,7 +343,7 @@
 
 <?php
 
-    $borrarCliente = new ControladorClientes();
-    $borrarCliente->crtEliminarCliente();
+$borrarCliente = new ControladorClientes();
+$borrarCliente->crtEliminarCliente();
 
 ?>

@@ -78,7 +78,7 @@
 
 
                 if (respuesta) {
-                    nuevaCategoria.parent().after('<div class="alert alert-warning">Este categoria ya existe en la base de datos</div>');
+                    nuevaCategoria.parent().after('<div class="alert alert-warning">Esta categoria ya existe en la base de datos</div>');
 
                     nuevaCategoria.val("");
 
@@ -93,6 +93,15 @@
         });
     });
 
- 
+    /*==============================================================================================
+    LIMPIA EL FORMULARIO DE INGRESO DE CATEGORIAS EN EL MODAL
+    ==============================================================================================*/
+
+    $("#modalAgregarCategoria").on("hidden.bs.modal", function () {
+
+        $(this).find('form')[0].reset();
+
+        $(".alert").remove();
+    });
 
  
