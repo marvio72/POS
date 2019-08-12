@@ -1,45 +1,75 @@
 <div class="content-wrapper">
 
-<section class="content-header">
+  <section class="content-header">
     <h1>
-        Administrar Ventas
-       
+      Administrar venta
+
     </h1>
 
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <!-- <li><a href="#">Examples</a></li> -->
-        <li class="active">Administrar Ventas</li>
+      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+      <!-- <li><a href="#">Examples</a></li> -->
+      <li class="active">Administrar venta</li>
     </ol>
 
-</section> <!--Fin .content-header-->
+  </section>
+  <!--Fin .content-header-->
 
-<!-- Main content -->
-<section class="content">
+  <!-- Main content -->
+  <section class="content">
 
     <!-- Default box -->
     <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title">Title</h3>
+      <div class="box-header with-border">
+        <a href="crear-venta">
+          <button class="btn btn-primary">
+            Agregar venta
+          </button>
+        </a>
 
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                    <i class="fa fa-minus"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                    <i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class="box-body">
-            Start creating your amazing application!
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-            Footer
-        </div>
-        <!-- /.box-footer-->
+      </div>
+      <div class="box-body">
+        <table class="table table-bordered table-striped dt-responsive tablas" style="width: 100%">
+          <thead>
+            <tr>
+              <th style="width:10px">#</th>
+              <th>Código factura</th>
+              <th>Cliente</th>
+              <th>Vendedor</th>
+              <th>Forma de pago</th>
+              <th>Neto</th>
+              <th>Total</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>1000123</td>
+              <td>Juan Villegas</td>
+              <td>Lupita González</td>
+              <td>TC-10293892839</td>
+              <td>$ 1,329.80</td>
+              <td>$ 1,542.57</td>
+              <td>2019-08-06 12:03:22</td>
+
+              <td>
+                <div class="bt-group">
+                  <button class="btn btn-primary"><i class="fa fa-print"></i></button>
+                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+
     </div>
     <!-- /.box -->
 
-</section>
-<!-- /.content -->
+  </section>
+  <!-- /.content -->
 </div>

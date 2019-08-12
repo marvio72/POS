@@ -37,6 +37,8 @@ session_start();
     <link rel="stylesheet" href="views/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="views/plugins/iCheck/all.css">
+    <!-- Esitlo Personal -->
+    <link rel="stylesheet" href="../css/estilos.css">
 
     <!-- // ──────────────────────────────────────────────────────────────────────
     //   :::::: P L U G I N S   J S : :  :   :    :     :        :          :
