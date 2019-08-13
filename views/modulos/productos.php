@@ -235,7 +235,8 @@
 
                                     <div class="input-group">
 
-                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="<?php echo GANANCIA ?>" required>
+                                        <!--NOTE Porcentaje-->
 
                                         <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
@@ -389,7 +390,8 @@
                                 </div>
 
                             </div>
-                            <input type="hidden" class="stockError"> <!-NOTE Es usado para mostrar el error de stocks--->
+                            <input type="hidden" class="stockError">
+                            <!-NOTE Es usado para mostrar el error de stocks--->
                         </div>
                         <!--ROW-->
                         <!--PRECIO COMPRA-->
@@ -444,7 +446,7 @@
 
                                     <div class="input-group">
 
-                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="40" required>
+                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="<?php echo GANANCIA; ?>" required> <!--NOTE Porcentaje-->
 
                                         <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 

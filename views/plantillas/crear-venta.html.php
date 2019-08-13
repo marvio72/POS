@@ -44,15 +44,13 @@
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION['nombre'] ?>" readonly="readonly">
-
-                    <input type="hidden" name="idVendedor" value="<?php echo $_SESSION['id'] ?>">
+                    <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="Usuario Administrador" readonly="readonly">
 
                   </div>
 
                 </div>
 
-              <!--***************   *** Comentario *** ****************
+                <!--***************   *** Comentario *** ****************
               ENTRADA VENTA
               /*****************   *** ********** *** ****************-->
                 <div class="form-group">
@@ -60,30 +58,7 @@
                   <div class="input-group">
 
                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-
-                    <?php
-                    
-                      $item = null;
-                      $valor = null;
-
-                      $ventas = ControladorVentas::ctrMostrarVentas($item,$valor);
-
-                      if (!$ventas) {
-
-                        echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="'.FOLIO.'" readonly="readonly">'; //NOTE Parametro para que funcione desde una Constante
-
-                      }else{
-
-                        foreach ($ventas as $key => $value){
-
-                        }
-                        $codigo = $value["codigo"]+1;
-
-                          echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="'.$codigo.'" readonly="readonly">';
-                      }
-                    
-                    ?>
-                    
+                    <input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="10002343" readonly="readonly">
 
                   </div>
 
@@ -101,20 +76,6 @@
                     <select name="seleccionarCliente" id="seleccionarCliente" class="form-control" required="required">
 
                       <option value="">Seleccionar cliente</option>
-
-                      <?php
-                      
-                        $item = null;
-                        $valor = null;
-
-                        $cliente = ControladorClientes::crtMostrarClientes($item, $valor);
-
-                          foreach ($cliente as $key => $value) {
-                            
-                            echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
-                          }
-                      
-                      ?>
                     </select>
 
                     <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarCliente" data-dismiss="modal">Agregar cliente</button></span>
