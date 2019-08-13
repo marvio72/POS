@@ -30,7 +30,7 @@
 
           <div class="box-header with-border"></div>
 
-          <form role="form" metohd="post">
+          <form role="form" method="post" class="formularioVenta">
 
             <div class="box-body">
 
@@ -130,7 +130,7 @@
 
                 <div class="form-group row nuevoProducto">
 
-                  <!-- Descripción del producto -->
+                  <!-- Descripción del producto
 
                   <div class="col-xs-6" style="padding-right:0px">
 
@@ -144,7 +144,7 @@
 
                   </div>
 
-                  <!-- Cantidad del Producto -->
+                  Cantidad del Producto 
 
                   <div class="col-xs-3">
 
@@ -152,7 +152,7 @@
 
                   </div>
 
-                  <!-- Precio del producto -->
+                  Precio del producto 
 
                   <div class="col-xs-3" style="padding-left:0px">
 
@@ -164,7 +164,7 @@
 
                     </div>
 
-                  </div>
+                  </div> -->
 
                 </div>
 
@@ -315,24 +315,11 @@
                   <th>Stock</th>
                   <th>Acciones</th>
                 </tr>
+                
               </thead>
 
-              <tbody>
-
-                <tr>
-                  <td>1</td>
-                  <td><img src="views/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                  <td>00123</td>
-                  <td>Lorem ipsum dolor sit amet.</td>
-                  <td>20</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary">Agregar</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
             </table>
+
           </div>
 
         </div>

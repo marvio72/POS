@@ -35,14 +35,6 @@ class TablaProductosVentas
       $stock_min = $productos[$i]["stock_min"];
       $stock_max = $productos[$i]["stock_max"];
 
-      // if ($productos[$i]["stock"] <= 10 ) { //FIXME: CAMBIAR LAS CONDICIONALES TODO CON RESPECTO A LOS VALORES DE STOCK MAX Y STOCK MIN. 
-      //     $stock = "<button class='btn btn-danger'>" . $productos[$i]["stock"] . "</button>";
-      // }else if ($productos[$i]["stock"] >= 11 && $productos[$i]["stock"] <= 15){
-      //     $stock = "<button class='btn btn-warning'>" . $productos[$i]["stock"] . "</button>";
-      // }else{
-      //     $stock = "<button class='btn btn-success'>" . $productos[$i]["stock"] . "</button>";
-      // }
-
       if ($productos[$i]["stock"] <= $stock_min || $productos[$i]["stock"] <= 1) {
         $stock = "<button class='btn btn-danger'>" . $productos[$i]["stock"] . "</button>";
       } else if ($productos[$i]["stock"] <= floor(($stock_max + $stock_min) / 2) && $productos[$i]["stock"] > $stock_min) {
