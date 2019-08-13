@@ -303,7 +303,7 @@
 
           <div class="box-body">
 
-            <table class="table table-bordered table-striped dt-responsive tablas">
+            <table class="table table-bordered table-striped dt-responsive tablaVentas">
 
               <thead>
 
