@@ -72,6 +72,20 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
         var descripcion = respuesta["descripcion"];
         var stock = respuesta['stock'];
         var precio = respuesta['precio_venta'];
+
+        if (stock == 0) {
+
+          swal.fire({
+            title: "No hay stock disponible",
+            type: "error",
+            confirmButtonText: "¡Cerrar"
+          });
+
+          $("button[idProducto='"+idProducto+"']").addClass("btn-primary agregarProducto");
+
+          return;
+          
+        }
     
         $(".nuevoProducto").append(
 
@@ -120,13 +134,54 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 });
 
 /*==============================================================================================
+CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGHE EN ELLA
+==============================================================================================*/
+
+$(".tablaVentas").on("draw.dt", function(){
+
+  if (localStorage.getItem("quitarProducto") != null) {
+    
+    var listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
+
+    for (let i = 0; i < listaIdProductos.length; i++) {
+      
+      $("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").removeClass('btn-default');
+      
+      $("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").addClass('btn-primary agregarProducto');
+
+    }
+  }
+});
+
+/*==============================================================================================
 QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN
 ==============================================================================================*/
+var idQuitarProducto = [];
+
 $(".formularioVenta").on("click", "button.quitarProducto", function () {
 
   $(this).parent().parent().parent().parent().remove();
 
   var idProducto = $(this).attr("idProducto");
+
+  /*==============================================================================================
+  ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
+  ==============================================================================================*/
+
+  if (localStorage.getItem("quitarProducto") == null) {
+    
+    idQuitarProducto = [];
+
+  }else{
+
+    idQuitarProducto.concat(localStorage.getItem("quitarProducto"));
+
+  }
+
+    idQuitarProducto.push({"idProducto":idProducto});
+
+    localStorage.setItem("quitarProducto", JSON.stringify(idQuitarProducto));
+
 
   $("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
   
