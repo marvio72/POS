@@ -193,8 +193,11 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
 AGREGANDO PRODUCTOS DESDE EL BOTÓN PARA DISPOSITIVOS MOVILES
 ==============================================================================================*/
 
+var numProducto = 0;
+
 $(".btnAgregarProducto").click(function(){
 
+  numProducto++;
   var datos = new FormData();
   datos.append("traerProductos", "ok");
 
@@ -220,7 +223,7 @@ $(".btnAgregarProducto").click(function(){
 
         '<span class="input-group-addon"><button class="btn btn-danger btn-xs quitarProducto" idProducto><i class="fa fa-times"></i></button></span>' +
 
-        '<select class="form-control nuevaDescripcionProducto idProducto" name="nuevaDescripcionProducto" required>' +
+        '<select class="form-control nuevaDescripcionProducto" id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>' +
 
         '<option>Seleccione el producto</option>'+
 
@@ -261,11 +264,16 @@ $(".btnAgregarProducto").click(function(){
       
       function funcionForEach(item, index){
 
-        $(".nuevaDescripcionProducto").append(
+        if (item.stock != 0) {
+          
+          $("#producto"+numProducto).append(
+  
+            '<option idProducto="'+item.id+'" value="'+item.descripcion+'">'+item.descripcion+'</option>'
 
-          '<option idProducto="'+item.id+'" value="'+item.descripcion+'">'+item.descripcion+'</option>'
+          );  
 
-        );
+        }
+        
       }
   
     }
