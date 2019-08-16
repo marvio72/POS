@@ -128,7 +128,12 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
                   '</div>'+
 
                 '</div>'
-        )
+        );
+
+        //SUMAR TOTAL DE PRECIOS
+
+        sumarTotalPrecios();
+
       }
     });
 });
@@ -186,7 +191,17 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
   $("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass('btn-default');
   
   $("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
+
+  if ($(".nuevoProducto").children().length == 0) {
+    
+      $("#nuevoTotalVenta").val(0);
+  }else{
+    
+    //SUMAR TOTAL DE PRECIOS
   
+    sumarTotalPrecios();
+
+  }
 });
 
 /*==============================================================================================
@@ -274,6 +289,10 @@ $(".btnAgregarProducto").click(function(){
 
         }
         
+        //SUMAR TOTAL DE PRECIOS
+  
+        sumarTotalPrecios();
+
       }
   
     }
@@ -328,6 +347,10 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
   
   if (Number($(this).val()) > Number($(this).attr("stock"))) {
 
+    /*==============================================================================================
+    SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESA VALORES INICIALES
+    ==============================================================================================*/
+
     $(this).val(1);
 
     precio.val(precio.attr("precioReal"));
@@ -340,4 +363,35 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
     });
   
   }
+
+  //SUMAR TOTAL DE PRECIOS
+
+  sumarTotalPrecios();
+
 });
+
+/*==============================================================================================
+SUMAR TODOS LOS PRECIOS
+==============================================================================================*/
+
+function sumarTotalPrecios(){
+
+  var precioItem = $(".nuevoPrecioProducto");
+  var arraySumaPrecio = [];
+
+  for (let i = 0; i < precioItem.length; i++) {
+    
+    arraySumaPrecio.push(Number($(precioItem[i]).val()));
+    
+  }
+
+  function sumaArrayPrecios(total, numero){
+
+      return total + numero;
+
+  }
+
+  var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+  console.log("sumaTotalPrecio:", sumaTotalPrecio);
+  $("#nuevoTotalVenta").val(sumaTotalPrecio);
+}
