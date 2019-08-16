@@ -55,10 +55,10 @@ session_start();
     <!-- AdminLTE App -->
     <script src="views/dist/js/adminlte.min.js"></script>
     <!-- DataTables -->
-    <script src="views/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="views/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="views/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-    <script src="views/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+    <script src="/views/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/views/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/views/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+    <script src="/views/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
     <!-- Sweetalert 2-->
     <script src="views/plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
@@ -70,6 +70,8 @@ session_start();
     <script src="views/plugins/input-mask/jquery.inputmask.js"></script>
     <script src="views/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="views/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- jqueryNumber -->
+    <script src="/views/plugins/jqueryNumber/jquerynumber.min.js"></script>
 
 </head>
 

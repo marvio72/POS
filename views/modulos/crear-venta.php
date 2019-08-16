@@ -221,7 +221,7 @@
 
                               <span class="input-group-addon"><i class="fa fa-usd"></i></span>
 
-                              <input type="number" class="form-control input-lg" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="000000" total readonly required="required">
+                              <input type="text" class="form-control input-lg" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="000000" total readonly required="required">
 
                             </div>
 
