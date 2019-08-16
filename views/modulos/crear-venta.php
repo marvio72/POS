@@ -203,7 +203,11 @@
 
                             <div class="input-group">
 
-                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required="required">
+                              <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta"  value=<?php echo IMPUESTO; ?> required="required">
+
+                              <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required="required">
+
+                              <input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" required="required">
 
                               <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
@@ -217,7 +221,7 @@
 
                               <span class="input-group-addon"><i class="fa fa-usd"></i></span>
 
-                              <input type="number" class="form-control input-lg" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="000000"  readonly required="required">
+                              <input type="number" class="form-control input-lg" min="0" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="000000" total readonly required="required">
 
                             </div>
 
