@@ -272,7 +272,7 @@ $(".btnAgregarProducto").click(function(){
 
         '<div class="col-xs-3 ingresoCantidad">' +
 
-        '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock required="required">' +
+        '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock required>' +
 
         '</div>' +
 
@@ -482,7 +482,7 @@ $("#nuevoMetodoPago").change(function(){
 
     $(this).parent().parent().parent().children(".cajasMetodoPago").html(
 
-      '<div class="col-xs-4">' +
+      '<div class="col-xs-4 ingresarEfectivo">' +
       
         '<div class="input-group">' + 
         
@@ -543,14 +543,33 @@ $("#nuevoMetodoPago").change(function(){
 CAMBIO EN EFECTIVO
 ==============================================================================================*/
 
-$(".formularioVenta").on("change", "input.nuevoValorEfectivo", function(){
+$(".formularioVenta").on("change", "input.nuevoValorEfectivo", function(){ //TODO VALIDAR QUE LA CANTIDAD QUE SE PAGUE SEA MAYOR QUE LA CONTIDAD TOTAL NETA
 
-   var efectivo = $(this).val();
+   var efectivo = Number($(this).val());
+   var totalVenta = Number($("#nuevoTotalVenta").val());
 
-   var cambio = Number(efectivo) - Number($("#nuevoTotalVenta").val());
+   //Validar que efectivo sea mayour que el total
 
-   var nuevoCambioEfectivo = $(this).parent().parent().parent().children(".capturarCambioEfectivo").children().children('.nuevoCambioEfectivo');
+  if (efectivo >= totalVenta) {
 
-   nuevoCambioEfectivo.val(cambio);
+    var cambio = efectivo - totalVenta;
+
+    var nuevoCambioEfectivo = $(this).parent().parent().parent().children(".capturarCambioEfectivo").children().children('.nuevoCambioEfectivo');
+
+    nuevoCambioEfectivo.val(cambio);
+     
+  } else {
+
+    var valorEfectivo = $(this).parent().parent().parent().children(".ingresarEfectivo").children().children(".nuevoValorEfectivo");
+    valorEfectivo.val(0);
+    valorEfectivo.focus();
+
+    swal.fire({
+      title: "El efectivo debe ser mayor o igual al Total",
+      type: "error",
+      confirmButtonText: "¡Cerrar"
+    });
+
+  }
   
 });
