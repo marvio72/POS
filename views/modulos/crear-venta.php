@@ -240,7 +240,7 @@
                 <hr>
 
                 <!--***************   *** Comentario *** ****************
-                METODO DE PAGO
+                ENTRADA METODO DE PAGO
                 /*****************   *** ********** *** ****************-->
 
                 <div class="form-group row">
@@ -251,17 +251,19 @@
 
                       <select name="nuevoMetodoPago" id="nuevoMetodoPago" class="form-control" required="required">
                         <option value="">Selectione método de pago</option>
-                        <option value="efectivo">Efectivo</option>
-                        <option value="tarjetaCredito">Tarjeta Crédito</option>
-                        <option value="tarjetaDebito">Tarjeta Débito</option>
-                        <option value="transferenciaElectronica">Transferencia Electrónica</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="TC">Tarjeta Crédito</option>
+                        <option value="TD">Tarjeta Débito</option>
+                        <option value="TE">Transferencia Electrónica</option>
                       </select>
 
                     </div>
 
                   </div>
 
-                  <div class="col-xs-6" style="2padding-left:0px">
+                  <div class="cajasMetodoPago"></div>
+
+                  <!-- <div class="col-xs-6" style="2padding-left:0px">
 
                     <div class="input-group">
 
@@ -271,7 +273,7 @@
 
                     </div>
 
-                  </div>
+                  </div> -->
 
                 </div>
 
