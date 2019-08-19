@@ -154,13 +154,15 @@
 
                             </div>
                             <!-- STOCK MAX -->
-                            <div class="col-xs-12 col-sm-3">
+                            <div class="col-xs-12 col-sm-3 maxStock">
+                                <!--NOTE se añade clase maxStock para la validacion de stockMax y stockMin-->
 
                                 <div class="input-group">
 
                                     <span class="input-group-addon"><i class="fa fa-chevron-up"></i></span>
 
-                                    <input type="number" class="form-control input-lg" name="nuevoStockMax" id="nuevoStockMax" min="0" step="any" placeholder="S+" required>
+                                    <input type="number" class="form-control input-lg stockMax" name="nuevoStockMax" id="nuevoStockMax" min="0" step="any" placeholder="S+" required>
+                                    <!--NOTE se añade clase stockMax para la validacion de stockMax y stockMin-->
 
                                 </div>
 
@@ -367,13 +369,14 @@
 
                             </div>
                             <!-- STOCK MAX  -->
-                            <div class="col-xs-12 col-sm-3">
+                            <div class="col-xs-12 col-sm-3 maxStock">
+                                <!--NOTE Se agrega id maxStock para realizar validación de stockmax y min-->
 
                                 <div class="input-group">
 
                                     <span class="input-group-addon"><i class="fa fa-chevron-up"></i></span>
 
-                                    <input type="number" class="form-control input-lg" name="editarStockMax" id="editarStockMax" min="0" required>
+                                    <input type="number" class="form-control input-lg stockMax" name="editarStockMax" id="editarStockMax" min="0" required>
 
                                 </div>
 
@@ -446,7 +449,8 @@
 
                                     <div class="input-group">
 
-                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="<?php echo GANANCIA; ?>" required> <!--NOTE Porcentaje-->
+                                        <input type="number" class="form-control input-lg nuevoPorcentaje" min="0" value="<?php echo GANANCIA; ?>" required>
+                                        <!--NOTE Porcentaje-->
 
                                         <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 

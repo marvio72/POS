@@ -138,6 +138,7 @@ $("#nuevoStockMin, #editarStockMin, #nuevoStockMax, #editarStockMax").change(fun
     $(".alert").remove();
 
     var nStockMax   = $("#nuevoStockMax").val();
+    var maxStock    = $(this).parent().parent().parent().children(".maxStock").children().children("input.stockMax");
     var nStockMin   = $("#nuevoStockMin").val();
     var stMin       = $('#nuevoStockMin');
     var nStockError = $('.stockError');
@@ -149,20 +150,24 @@ $("#nuevoStockMin, #editarStockMin, #nuevoStockMax, #editarStockMax").change(fun
     
     
         
-    if (parseInt(nStockMin) >= parseInt(nStockMax)) {
+    if (parseInt(nStockMin) >= parseInt(nStockMax) || nStockMax < 0 || nStockMin < 0) {
 
-        nStockError.parent().after('<div class="alert alert-warning">El Stock Min debe ser menor que Stock Max</div>');
+        nStockError.parent().after('<div class="alert alert-warning">El Stock Min debe ser menor que Stock Max y los números no deben ser negativos</div>');
+    
+        maxStock.val('');
 
-        stMin.focus();
+        maxStock.focus();
+
+        stMin.val('');
 
     }    
     
     
-    if (parseInt(eStockMin) >= parseInt(eStockMax)) {
+    if (parseInt(eStockMin) >= parseInt(eStockMax) || eStockMax < 0 || eStockMin < 0) {
 
-        nStockError.parent().after('<div class="alert alert-warning">El Stock Min debe ser menor que Stock Max</div>');
+        nStockError.parent().after('<div class="alert alert-warning">El Stock Min debe ser menor que Stock Max y los números no deben ser negativos</div>');
 
-        estMin.focus();
+        maxStock.focus();
 
     }
 
