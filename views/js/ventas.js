@@ -309,19 +309,19 @@ $(".btnAgregarProducto").click(function(){
 
         }
         
-        //SUMA TOTAL DE PRECIOS
-  
-        sumarTotalPrecios();
-
-        //AGREGAR IMPUESTO
-        
-        agregarImpuesto();
-
-        //AGREGAR FORMATO AL PRECIO
-
-        $(".nuevoPrecioProducto").number(true, 2);
-
       }
+
+      //SUMA TOTAL DE PRECIOS
+
+      sumarTotalPrecios();
+
+      //AGREGAR IMPUESTO
+      
+      agregarImpuesto();
+
+      //AGREGAR FORMATO AL PRECIO
+
+      $(".nuevoPrecioProducto").number(true, 2);
   
     }
   });
@@ -355,6 +355,18 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
       $(nuevaCantidadProducto).attr("stock", respuesta["stock"]);
       $(nuevoPrecioProducto).val(respuesta["precio_venta"]);
       $(nuevoPrecioProducto).attr("precioReal", respuesta["precio_venta"]);
+
+      //SUMA TOTAL DE PRECIOS
+
+      sumarTotalPrecios();
+
+      //AGREGAR IMPUESTO
+
+      agregarImpuesto();
+
+      //AGREGAR FORMATO AL PRECIO
+
+      $(".nuevoPrecioProducto").number(true, 2);
   
     }
   });
