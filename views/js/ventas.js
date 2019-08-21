@@ -141,6 +141,13 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
         //AGREGAR FORMATO AL PRECIO
 
         $(".nuevoPrecioProducto").number(true, 2);
+
+        //Con esto se restablece el select de metodo de pago por default
+        metodoDePago().removeClass("col-xs-4");
+
+        metodoDePago().addClass("col-xs-6");
+
+        ocultarCampos();
         
 
       }
@@ -222,6 +229,13 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
     agregarImpuesto();
 
   }
+
+  //Con esto se restablece el select de metodo de pago  por default
+  metodoDePago().removeClass("col-xs-4");
+
+  metodoDePago().addClass("col-xs-6");
+
+  ocultarCampos();
 });
 
 /*==============================================================================================
@@ -367,7 +381,15 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
       //AGREGAR FORMATO AL PRECIO
 
       $(".nuevoPrecioProducto").number(true, 2);
-  
+
+
+        //Con esto se restablece el select de metodo de pago  por default
+       metodoDePago().removeClass("col-xs-4");
+
+       metodoDePago().addClass("col-xs-6");
+
+       ocultarCampos();
+      
     }
   });
   
@@ -411,6 +433,13 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
   //AGREGAR IMPUESTO
         
   agregarImpuesto();
+
+  //Con esto se restablece el select de metodo de pago por default
+  metodoDePago().removeClass("col-xs-4");
+
+  metodoDePago().addClass("col-xs-6");
+
+  ocultarCampos();
 
 });
 
@@ -470,6 +499,13 @@ $("#nuevoImpuestoVenta").change(function(){
 
   agregarImpuesto();
 
+  //Con esto se restablece el select de metodo de pago por default
+  metodoDePago().removeClass("col-xs-4");
+
+  metodoDePago().addClass("col-xs-6");
+
+  ocultarCampos();
+
 });
 
 /*==============================================================================================
@@ -526,7 +562,17 @@ $("#nuevoMetodoPago").change(function(){
     $(".nuevoValorEfectivo").number(true, 2);
     $(".nuevoCambioEfectivo").number(true, 2);
 
-  } else {
+  } else if (metodo == ""){
+
+    //Con esto se restablece el select de metodo de pago por default
+    metodoDePago().removeClass("col-xs-4");
+
+    metodoDePago().addClass("col-xs-6");
+
+    ocultarCampos();
+
+
+  }else {
 
     $(this).parent().parent().removeClass("col-xs-4");
     
@@ -585,3 +631,38 @@ $(".formularioVenta").on("change", "input.nuevoValorEfectivo", function(){ //TOD
   }
   
 });
+
+/*==============================================================================================
+FUNCION PARA OCULTAR LOS CAMPOS DE METODO DE PAGO
+==============================================================================================*/
+function ocultarCampos(){
+
+  $("#nuevoMetodoPago").val("");
+  $(".nuevoValorEfectivo").val("000000");
+  $(".nuevoCambioEfectivo").val("000000");
+
+  var oculta = $("#nuevoMetodoPago").parent().parent().parent().children(".cajasMetodoPago").html(
+
+      '<div class="col-xs-6" style="padding-left:0px">' +
+
+      '<div class="input-group">' +
+
+      '</div>' +
+
+      '</div>');
+
+      return oculta;
+
+}
+
+/*==============================================================================================
+FUNCION PARA REALIZAR CAMBIOS EN LAS COLUMNAS DE METODO DE PAGO
+==============================================================================================*/
+//En esta funcion hay que añadirle la clase que se va a sustituir.
+function metodoDePago(){
+
+  var metodoPago = $("#nuevoMetodoPago").parent().parent();
+
+  return metodoPago;
+
+}
