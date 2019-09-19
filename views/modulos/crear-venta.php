@@ -130,42 +130,8 @@
 
                   <div class="form-group row nuevoProducto">
 
-                    <!-- Descripción del producto
-
-                  <div class="col-xs-6" style="padding-right:0px">
-
-                    <div class="input-group">
-
-                      <span class="input-group-addon"><button class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
-
-                      <input type="text" class="form-control" id="agregarProducto" name="agregarProducto" placeholder="Descripción del producto" required="required">
-
-                    </div>
-
-                  </div>
-
-                  Cantidad del Producto 
-
-                  <div class="col-xs-3">
-
-                    <input type="number" class="form-control" id="nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" placeholder="0" required="required">
-
-                  </div>
-
-                  Precio del producto 
-
-                  <div class="col-xs-3" style="padding-left:0px">
-
-                    <div class="input-group">
-
-                      <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-
-                      <input type="number" min="1" class="form-control btn-numerico" id="nuevoPrecioProducto" name="nuevoPrecioProducto" placeholder="000000" readonly required>
-
-                    </div>
-
-                  </div> -->
-
+                  <!-- Aqui se añade los campos mediante javascript  -->
+                  
                   </div>
 
                   <!--***************   *** Comentario *** ****************
@@ -182,7 +148,7 @@
 
                   <div class="row">
 
-                    <div class="col-xs-12 col-lg-8 pull-right">
+                    <div class="col-xs-12 col-lg-12 pull-right">
 
                       <table class="table">
 
@@ -190,6 +156,7 @@
 
                           <tr>
                             <th>Impuesto</th>
+                            <th>Descuento</th>
                             <th>Total</th>
                           </tr>
 
@@ -199,7 +166,7 @@
 
                           <tr>
 
-                            <td style="width: 50%">
+                            <td style="width: 25%">
 
                               <div class="input-group">
 
@@ -215,7 +182,19 @@
 
                             </td>
 
-                            <td style="width: 50%">
+                            <td style="width: 25%">
+
+                              <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+
+                                <input type="text" class="form-control input-lg" id="nuevoTotalDescuento" name="nuevoTotalDescuento" placeholder="000000" descuento readonly required="required">
+
+                              </div>
+
+                            </td>
+
+                            <td style="width: 25%">
 
                               <div class="input-group">
 

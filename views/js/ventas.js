@@ -97,7 +97,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 
                     '<div class="input-group">'+
 
-                      '<span class="input-group-addon"><button class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProducto+'"><i class="fa fa-times"></i></button></span>'+
+                      '<span class="input-group-addon" style="padding:0px"><button class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProducto+'"><i class="fa fa-times"></i></button></span>'+
 
                       '<input type="text" class="form-control agregarProducto" name="agregarProducto" value="'+descripcion+'" required="required">'+
 
@@ -119,9 +119,9 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 
                     '<div class="input-group">'+
 
-                      '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-
-                      '<input type="text" class="form-control btn-numerico nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+                    '<input type="text" class="form-control btn-numerico nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+                    
+                    '<span class="input-group-addon" style="padding:0px"><button class="btn btn-primary btn-xs agregarDescuento" idDescuento style="padding:0px;margin:0px"><i class="fa fa-arrow-circle-down" aria-hidden="true"></span>'+
 
                     '</div>'+
 
@@ -137,6 +137,10 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
         //AGREGAR IMPUESTO
 
         agregarImpuesto();
+
+        //AGREGAR DESCUENTOS
+
+        sumarTotalDescuentos();
 
         //AGREGAR FORMATO AL PRECIO
 
@@ -228,6 +232,10 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
     
     agregarImpuesto();
 
+    //AGREGAR DESCUENTOS
+
+    sumarTotalDescuentos();
+
   }
 
   //Con esto se restablece el select de metodo de pago  por default
@@ -270,7 +278,7 @@ $(".btnAgregarProducto").click(function(){
 
         '<div class="input-group">' +
 
-        '<span class="input-group-addon"><button class="btn btn-danger btn-xs quitarProducto" idProducto><i class="fa fa-times"></i></button></span>' +
+        '<span class="input-group-addon" style="padding:0px"><button class="btn btn-danger btn-xs quitarProducto" idProducto><i class="fa fa-times"></i></button></span>' +
 
         '<select class="form-control nuevaDescripcionProducto" id="producto'+numProducto+'" idProducto name="nuevaDescripcionProducto" required>' +
 
@@ -289,16 +297,15 @@ $(".btnAgregarProducto").click(function(){
         '<input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="1" stock required>' +
 
         '</div>' +
-
         '<!-- Precio del producto -->' +
 
         '<div class="col-xs-3 ingresoPrecio" style="padding-left:0px">' +
 
         '<div class="input-group">' +
 
-        '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>' +
-
         '<input type="text" class="form-control btn-numerico nuevoPrecioProducto" precioReal name="nuevoPrecioProducto" readonly required>' +
+        
+        '<span class="input-group-addon" style="padding:0px"><button class="btn btn-primary btn-xs agregarDescuento" idDescuento style="padding:0px;margin:0px"><i class="fa fa-arrow-circle-down" aria-hidden="true"></span>' +
 
         '</div>' +
 
@@ -332,6 +339,10 @@ $(".btnAgregarProducto").click(function(){
       //AGREGAR IMPUESTO
       
       agregarImpuesto();
+
+      //AGREGAR DESCUENTOS
+
+      sumarTotalDescuentos();
 
       //AGREGAR FORMATO AL PRECIO
 
@@ -377,6 +388,10 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
       //AGREGAR IMPUESTO
 
       agregarImpuesto();
+
+      //AGREGAR DESCUENTOS
+
+      sumarTotalDescuentos();
 
       //AGREGAR FORMATO AL PRECIO
 
@@ -434,6 +449,10 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
         
   agregarImpuesto();
 
+  //AGREGAR DESCUENTOS
+
+  sumarTotalDescuentos();
+
   //Con esto se restablece el select de metodo de pago por default
   metodoDePago().removeClass("col-xs-4");
 
@@ -452,6 +471,7 @@ function sumarTotalPrecios(){
   var precioItem = $(".nuevoPrecioProducto");
   var arraySumaPrecio = [];
 
+
   for (let i = 0; i < precioItem.length; i++) {
     
     arraySumaPrecio.push(Number($(precioItem[i]).val()));
@@ -468,6 +488,37 @@ function sumarTotalPrecios(){
   
   $("#nuevoTotalVenta").val(sumaTotalPrecio);
   $("#nuevoTotalVenta").attr("total", sumaTotalPrecio);
+}
+/*==============================================================================================
+SUMAR TODOS LOS DESCUENTOS
+==============================================================================================*/
+
+function sumarTotalDescuentos(){
+
+  
+  var descuentoItem = $(".nuevoDescuento");
+  var arraySumaDescuento = [];
+  var sumaTotalDescuento = 0;
+
+    for (let i = 0; i < descuentoItem.length; i++) {
+      arraySumaDescuento.push(Number($(descuentoItem[i]).val()));
+    }
+
+     function sumaArrayDescuento(total, numero) {
+       return total + numero;
+     }
+
+    if (sumaArrayDescuento != "") {
+      sumaTotalDescuento = arraySumaDescuento.reduce(sumaArrayDescuento);
+    } else {
+      sumaTotalDescuento = 1;
+    }
+    
+
+    $("#nuevoTotalDescuento").val(sumaTotalDescuento);
+    $("#nuevoTotalDescuento").attr("descuento", sumaTotalDescuento);
+
+  
 }
 
 /*==============================================================================================
@@ -492,7 +543,7 @@ function agregarImpuesto(){
 }
 
 /*==============================================================================================
-CUANDO CAMBIA EL INPUESTO
+CUANDO CAMBIA EL IMPUESTO
 ==============================================================================================*/
 
 $("#nuevoImpuestoVenta").change(function(){
@@ -666,3 +717,51 @@ function metodoDePago(){
   return metodoPago;
 
 }
+
+/*==============================================================================================
+AGREGAR DESCUENTO EN CADA PRODUCTO // TODO: REALIZAR LA SUMA DE LOS DESCUENTOS.
+==============================================================================================*/
+
+$(".formularioVenta").on("click", "button.agregarDescuento", function () {
+
+
+  var idDescuento = $(this).attr('idDescuento');
+  var btnDescuento = $(this);
+
+  btnDescuento.removeClass("btn-primary agregarDescuento");
+  btnDescuento.addClass("btn-danger eliminarDescuento");
+
+  btnDescuento.parent().parent().parent().before().append(
+    '<!-- Descuento del producto -->' +
+
+    '<div class="col-sx-3 ingresoDescuento" style="padding-left:0px">' +
+
+        '<div class="input-group">' +
+
+        '<input type="number" min="1" class="form-control nuevoDescuento" descuentoReal name="nuevoDescuento" placeholder="Descuento" required>' +
+        
+        '<span class="input-group-addon" style="padding:0px"><i class="fa fa-percent" aria-hidden="true" style="padding:0px"></i></span>' +
+
+        '</div>' +
+
+        '</div>'   
+
+  );
+
+});
+
+/*==============================================================================================
+BORRAR CAMPO DE DESCUENTO
+==============================================================================================*/
+$(".formularioVenta").on("click", "button.eliminarDescuento", function () {
+ 
+
+  var btnEliminar = $(this);
+  // $(this).parent().parent().parent().children('.ingresoDescuento').after('<div class="alert alert-warning">Hola</div>');
+  btnEliminar.parent().parent().parent().children('.ingresoDescuento').remove();
+
+  btnEliminar.removeClass("btn-danger eliminarDescuento");
+  btnEliminar.addClass("btn-primary agregarDescuento");
+
+  
+});
