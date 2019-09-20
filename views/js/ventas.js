@@ -478,13 +478,17 @@ function sumarTotalPrecios(){
     
   }
 
+  
+
   function sumaArrayPrecios(total, numero){
 
       return total + numero;
 
   }
 
+  //SUBTOTAL
   var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+  
   
   $("#nuevoTotalVenta").val(sumaTotalPrecio);
   $("#nuevoTotalVenta").attr("total", sumaTotalPrecio);
@@ -492,32 +496,33 @@ function sumarTotalPrecios(){
 /*==============================================================================================
 SUMAR TODOS LOS DESCUENTOS
 ==============================================================================================*/
+function sumaArrayDescuento(total, numero) {
+  return total + numero;
+}
 
 function sumarTotalDescuentos(){
 
-  
-  var descuentoItem = $(".nuevoDescuento");
-  var arraySumaDescuento = [];
-  var sumaTotalDescuento = 0;
+  if ($(".nuevoDescuento").length > 0) {
+    var descuentoItem = $(".nuevoDescuento");
+    var arraySumaDescuento = [];
+    var sumaTotalDescuento = 0;
 
-    for (let i = 0; i < descuentoItem.length; i++) {
-      arraySumaDescuento.push(Number($(descuentoItem[i]).val()));
-    }
-
-     function sumaArrayDescuento(total, numero) {
-       return total + numero;
-     }
-
-    if (sumaArrayDescuento != "") {
-      sumaTotalDescuento = arraySumaDescuento.reduce(sumaArrayDescuento);
-    } else {
-      sumaTotalDescuento = 1;
-    }
     
 
-    $("#nuevoTotalDescuento").val(sumaTotalDescuento);
-    $("#nuevoTotalDescuento").attr("descuento", sumaTotalDescuento);
+      for (let i = 0; i < descuentoItem.length; i++) {
+        arraySumaDescuento.push(Number($(descuentoItem[i]).val()));
+      }
+      
+      sumaTotalDescuento = arraySumaDescuento.reduce(sumaArrayDescuento);
+     
+      $("#nuevoTotalDescuento").val(sumaTotalDescuento);
+      $("#nuevoTotalDescuento").attr("descuento", sumaTotalDescuento);
 
+    } else {
+    
+          $("#nuevoTotalDescuento").val(0);
+          $("#nuevoTotalDescuento").attr("descuento", 0);
+    } 
   
 }
 
@@ -539,7 +544,9 @@ function agregarImpuesto(){
   $("#nuevoPrecioImpuesto").val(precioImpuesto);
 
   $("#nuevoPrecioNeto").val(precioTotal);
-
+  
+  
+  
 }
 
 /*==============================================================================================
@@ -725,11 +732,14 @@ AGREGAR DESCUENTO EN CADA PRODUCTO // TODO: REALIZAR LA SUMA DE LOS DESCUENTOS.
 $(".formularioVenta").on("click", "button.agregarDescuento", function () {
 
 
-  var idDescuento = $(this).attr('idDescuento');
+  // var idDescuento = $(this).attr('idDescuento');
   var btnDescuento = $(this);
+
 
   btnDescuento.removeClass("btn-primary agregarDescuento");
   btnDescuento.addClass("btn-danger eliminarDescuento");
+
+ 
 
   btnDescuento.parent().parent().parent().before().append(
     '<!-- Descuento del producto -->' +
@@ -738,10 +748,10 @@ $(".formularioVenta").on("click", "button.agregarDescuento", function () {
 
         '<div class="input-group">' +
 
+        '<span class="input-group-addon" style="padding:0px"><i class="fa fa-usd" aria-hidden="true" style="padding:0px"></i></span>' +
+
         '<input type="number" min="1" class="form-control nuevoDescuento" descuentoReal name="nuevoDescuento" placeholder="Descuento" required>' +
         
-        '<span class="input-group-addon" style="padding:0px"><i class="fa fa-percent" aria-hidden="true" style="padding:0px"></i></span>' +
-
         '</div>' +
 
         '</div>'   
@@ -763,5 +773,22 @@ $(".formularioVenta").on("click", "button.eliminarDescuento", function () {
   btnEliminar.removeClass("btn-danger eliminarDescuento");
   btnEliminar.addClass("btn-primary agregarDescuento");
 
+  sumarTotalDescuentos();
   
+});
+
+/*==============================================================================================
+CUANDO CAMBIA EL DESCUENTO
+==============================================================================================*/
+
+$(".formularioVenta").on("blur", "input.nuevoDescuento", function () {
+
+    sumarTotalDescuentos();
+
+});
+
+$(".formularioVenta").on("change", "input.nuevoDescuento", function () {
+
+  sumarTotalDescuentos();
+
 });

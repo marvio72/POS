@@ -170,7 +170,7 @@
 
                               <div class="input-group">
 
-                                <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value=<?php echo IMPUESTO; ?> required="required">
+                                <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value=<?php echo IMPUESTO; ?> required="required" readonly>
 
                                 <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required="required">
 
