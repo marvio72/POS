@@ -28,221 +28,275 @@
 
       <div class="col-12 col-lg-5">
 
-          <div class="box box-success">
+        <div class="box box-success">
 
-            <div class="box-header with-border"></div>
+          <div class="box-header with-border"></div>
 
-            <form role="form" method="post" class="formularioVenta">
+          <form role="form" method="post" class="formularioVenta">
 
-              <div class="box-body">
+            <div class="box-body">
 
-                <div class="box">
+              <div class="box">
 
-                  <!--***************   *** Comentario *** ****************
+                <!--***************   *** Comentario *** ****************
               ENTRADA VENDEDOR
               /*****************   *** ********** *** ****************-->
-                  <div class="form-group">
+                <div class="form-group">
 
-                    <div class="input-group">
+                  <div class="input-group">
 
-                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION['nombre'] ?>" readonly="readonly">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION['nombre'] ?>" readonly="readonly">
 
-                      <input type="hidden" name="idVendedor" value="<?php echo $_SESSION['id'] ?>">
-
-                    </div>
+                    <input type="hidden" name="idVendedor" value="<?php echo $_SESSION['id'] ?>">
 
                   </div>
 
-                  <!--***************   *** Comentario *** ****************
+                </div>
+
+                <!--***************   *** Comentario *** ****************
               ENTRADA VENTA
               /*****************   *** ********** *** ****************-->
-                  <div class="form-group">
+                <div class="form-group">
 
-                    <div class="input-group">
+                  <div class="input-group">
 
-                      <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+
+                    <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+
+                    if (!$ventas) {
+
+                      echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="' . FOLIO . '" readonly="readonly">'; //NOTE Parametro para que funcione desde una Constante
+
+                    } else {
+
+                      foreach ($ventas as $key => $value) { }
+                      $codigo = $value["codigo"] + 1;
+
+                      echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="' . $codigo . '" readonly="readonly">';
+                    }
+
+                    ?>
+
+
+                  </div>
+
+                </div>
+
+                <!--***************   *** Comentario *** ****************
+              ENTRADA CLIENTE
+              /*****************   *** ********** *** ****************-->
+                <div class="form-group">
+
+                  <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
+                    <select name="seleccionarCliente" id="seleccionarCliente" class="form-control" required="required">
+
+                      <option value="">Seleccionar cliente</option>
 
                       <?php
 
                       $item = null;
                       $valor = null;
 
-                      $ventas = ControladorVentas::ctrMostrarVentas($item, $valor);
+                      $cliente = ControladorClientes::crtMostrarClientes($item, $valor);
 
-                      if (!$ventas) {
+                      foreach ($cliente as $key => $value) {
 
-                        echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="' . FOLIO . '" readonly="readonly">'; //NOTE Parametro para que funcione desde una Constante
-
-                      } else {
-
-                        foreach ($ventas as $key => $value) { }
-                        $codigo = $value["codigo"] + 1;
-
-                        echo '<input type="text" class="form-control" id="nuevaVenta" name="nuevaVenta" value="' . $codigo . '" readonly="readonly">';
+                        echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
                       }
 
                       ?>
+                    </select>
 
+                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarCliente" data-dismiss="modal">Agregar cliente</button></span>
 
-                    </div>
 
                   </div>
 
-                  <!--***************   *** Comentario *** ****************
-              ENTRADA CLIENTE
-              /*****************   *** ********** *** ****************-->
-                  <div class="form-group">
+                </div>
 
-                    <div class="input-group">
-
-                      <span class="input-group-addon"><i class="fa fa-users"></i></span>
-
-                      <select name="seleccionarCliente" id="seleccionarCliente" class="form-control" required="required">
-
-                        <option value="">Seleccionar cliente</option>
-
-                        <?php
-
-                        $item = null;
-                        $valor = null;
-
-                        $cliente = ControladorClientes::crtMostrarClientes($item, $valor);
-
-                        foreach ($cliente as $key => $value) {
-
-                          echo '<option value="' . $value["id"] . '">' . $value["nombre"] . '</option>';
-                        }
-
-                        ?>
-                      </select>
-
-                      <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAgregarCliente" data-dismiss="modal">Agregar cliente</button></span>
-
-
-                    </div>
-
-                  </div>
-
-                  <!--***************   *** Comentario *** ****************
+                <!--***************   *** Comentario *** ****************
                 ENTRADA PARA AGREGAR PRODUCTO
                 /*****************   *** ********** *** ****************-->
 
-                  <div class="form-group row nuevoProducto">
+                <div class="form-group row nuevoProducto">
 
                   <!-- Aqui se añade los campos mediante javascript  -->
-                  
-                  </div>
 
-                  <!--***************   *** Comentario *** ****************
+                </div>
+
+                <!--***************   *** Comentario *** ****************
                 BOTON PARA AGREGAR PRODUCTO
                 /*****************   *** ********** *** ****************-->
 
-                  <button type="button" class="btn btn-primary hidden-lg btnAgregarProducto">Agregar producto</button>
+                <button type="button" class="btn btn-primary hidden-lg btnAgregarProducto">Agregar producto</button>
 
-                  <hr>
+                <hr style="margin-bottom: 0px">
 
-                  <!--***************   *** Comentario *** ****************
+                <!--***************   *** Comentario *** ****************
                 ENTRADA IMPUESTO Y TOTAL
                 /*****************   *** ********** *** ****************-->
 
-                  <div class="row">
+                <div class="row">
 
-                    <div class="col-xs-12 col-lg-12 pull-right">
+                  <div class="col-xs-12 col-lg-12 pull-right">
 
-                      <table class="table">
+                    <table class="table">
 
-                        <thead>
+                      <thead>
 
-                          <tr>
-                            <th>Impuesto</th>
-                            <th>Descuento</th>
-                            <th>Total</th>
-                          </tr>
+                        <tr>
+                          <th>Subtotal</th>
+                          <th>Descuento</th>
+                        </tr>
 
-                        </thead>
+                      </thead>
 
-                        <tbody>
+                      <tbody>
 
-                          <tr>
+                        <tr>
 
-                            <td style="width: 25%">
+                          <!-- SUBTOTAL -->
 
-                              <div class="input-group">
+                          <td style="width: 33%">
 
-                                <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value=<?php echo IMPUESTO; ?> required="required" readonly>
+                            <div class="input-group">
 
-                                <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required="required">
+                              <span class="input-group-addon"><i class="fa fa-usd"></i></span>
 
-                                <input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" required="required">
+                              <input type="text" class="form-control input-lg" id="nuevoSubTotal" name="nuevoSubTotal" placeholder="000000" total readonly required="required">
 
-                                <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+                            </div>
 
-                              </div>
+                          </td>
 
-                            </td>
+                          <!-- DESCUENTO -->
 
-                            <td style="width: 25%">
+                          </td>
 
-                              <div class="input-group">
+                          <td style="width: 33%">
 
-                                <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                            <div class="input-group">
 
-                                <input type="text" class="form-control input-lg" id="nuevoTotalDescuento" name="nuevoTotalDescuento" placeholder="000000" descuento readonly required="required">
+                              <span class="input-group-addon"><i class="fa fa-usd"></i></span>
 
-                              </div>
+                              <input type="text" class="form-control input-lg" id="nuevoTotalDescuento" name="nuevoTotalDescuento" placeholder="000000" descuento readonly required="required">
 
-                            </td>
+                            </div>
 
-                            <td style="width: 25%">
+                          </td>
 
-                              <div class="input-group">
+                        </tr>
 
-                                <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                      </tbody>
 
-                                <input type="text" class="form-control input-lg" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="000000" total readonly required="required">
+                    </table>
 
-                              </div>
+                  </div>
 
-                            </td>
+                </div>
 
-                          </tr>
+                <div class="row">
 
-                        </tbody>
+                  <div class="col-xs-12 col-lg-12 pull-right">
 
-                      </table>
+                    <table class="table">
+
+                      <thead>
+
+                        <tr>
+
+                          <th>Impuesto</th>
+                          <th>Total</th>
+
+                        </tr>
+
+                      </thead>
+
+                      <tbody>
+
+                        <tr>
+
+                          <!-- IMPUESTO -->
+
+
+                          <td style="width: 33%">
+
+                            <div class="input-group">
+
+                              <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                              <!-- modifica -->
+                              <input type="hidden" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" value=<?php echo IMPUESTO; ?> required="required" readonly>
+
+                              <input type="text" class="form-control input-lg" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required="required" placeholder="000000" readonly>
+
+                              <input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" required="required">
+
+                            </div>
+
+                          </td>
+
+                          <!-- Total -->
+                          <td style="width: 33%">
+
+                            <div class="input-group">
+
+                              <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                              <!-- modifica -->
+
+                              <input type="text" class="form-control input-lg" name="nuevoTotal" id="nuevoTotal" required="required" placeholder="000000" readonly>
+
+                            </div>
+
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+
+                    </table>
+
+                  </div>
+
+                </div>
+
+
+
+
+                <!--***************   *** Comentario *** ****************
+                ENTRADA METODO DE PAGO
+                /*****************   *** ********** *** ****************-->
+
+                <div class="form-group row">
+
+                  <div class="col-xs-6" style="padding-right:0px">
+
+                    <div class="input-group">
+
+                      <select name="nuevoMetodoPago" id="nuevoMetodoPago" class="form-control" required="required">
+                        <option value="">Seleccione método de pago</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="TC">Tarjeta Crédito</option>
+                        <option value="TD">Tarjeta Débito</option>
+                        <option value="TE">Transferencia Electrónica</option>
+                      </select>
 
                     </div>
 
                   </div>
 
-                  <hr>
+                  <div class="cajasMetodoPago"></div>
 
-                  <!--***************   *** Comentario *** ****************
-                ENTRADA METODO DE PAGO
-                /*****************   *** ********** *** ****************-->
-
-                  <div class="form-group row">
-
-                    <div class="col-xs-6" style="padding-right:0px">
-
-                      <div class="input-group">
-
-                        <select name="nuevoMetodoPago" id="nuevoMetodoPago" class="form-control" required="required">
-                          <option value="">Seleccione método de pago</option>
-                          <option value="Efectivo">Efectivo</option>
-                          <option value="TC">Tarjeta Crédito</option>
-                          <option value="TD">Tarjeta Débito</option>
-                          <option value="TE">Transferencia Electrónica</option>
-                        </select>
-
-                      </div>
-
-                    </div>
-
-                    <div class="cajasMetodoPago"></div>
-
-                    <!-- <div class="col-xs-6" style="2padding-left:0px">
+                  <!-- <div class="col-xs-6" style="2padding-left:0px">
 
                     <div class="input-group">
 
@@ -254,65 +308,65 @@
 
                   </div> -->
 
-                  </div>
-
-                  <br>
-
                 </div>
 
-              </div>
-
-
-              <div class="box-footer">
-
-                <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+                <br>
 
               </div>
-
-            </form>
-
-          </div>
-
-        </div>
-
-        <!--***************   *** Comentario *** ****************
-      LA TABALA DE PRODUCTOS
-      /*****************   *** ********** *** ****************-->
-
-        <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
-
-          <div class="box box-warning">
-
-            <div class="box-header with-border"></div>
-
-            <div class="box-body">
-
-              <table class="table table-bordered table-striped dt-responsive tablaVentas">
-
-                <thead>
-
-                  <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Imagen</th>
-                    <th>Código</th>
-                    <th>Descripción</th>
-                    <th>Stock</th>
-                    <th>Acciones</th>
-                  </tr>
-
-                </thead>
-
-              </table>
 
             </div>
 
+
+            <div class="box-footer">
+
+              <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+      <!--***************   *** Comentario *** ****************
+      LA TABALA DE PRODUCTOS
+      /*****************   *** ********** *** ****************-->
+
+      <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+
+        <div class="box box-warning">
+
+          <div class="box-header with-border"></div>
+
+          <div class="box-body">
+
+            <table class="table table-bordered table-striped dt-responsive tablaVentas">
+
+              <thead>
+
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Imagen</th>
+                  <th>Código</th>
+                  <th>Descripción</th>
+                  <th>Stock</th>
+                  <th>Acciones</th>
+                </tr>
+
+              </thead>
+
+            </table>
+
           </div>
 
         </div>
 
-
-
       </div>
+
+
+
+    </div>
 
   </section>
   <!-- /.content -->

@@ -187,6 +187,9 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
 
   $(this).parent().parent().parent().parent().remove();
 
+  
+  sumarTotalDescuentos();
+
   var idProducto = $(this).attr("idProducto");
 
   /*==============================================================================================
@@ -218,9 +221,13 @@ $(".formularioVenta").on("click", "button.quitarProducto", function () {
 
   if ($(".nuevoProducto").children().length == 0) {
     
-      $("#nuevoTotalVenta").val(0);
+      $("#nuevoSubTotal").val(0);
       $("#nuevoImpuestoVenta").val(16);
-      $("#nuevoTotalVenta").attr("total",0);
+      $("#nuevoSubTotal").attr("total",0);
+      $("#nuevoTotal").val(0);
+      $("#nuevoTotalDescuento").val(0);
+      $("#nuevoPrecioImpuesto").val(0);
+
 
   }else{
     
@@ -490,8 +497,8 @@ function sumarTotalPrecios(){
   var sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
   
   
-  $("#nuevoTotalVenta").val(sumaTotalPrecio);
-  $("#nuevoTotalVenta").attr("total", sumaTotalPrecio);
+  $("#nuevoSubTotal").val(sumaTotalPrecio);
+  $("#nuevoSubTotal").attr("total", sumaTotalPrecio);
 }
 /*==============================================================================================
 SUMAR TODOS LOS DESCUENTOS
@@ -527,50 +534,61 @@ function sumarTotalDescuentos(){
 }
 
 /*==============================================================================================
-FUNCIÓN AGREGAR IMPUESTO
+FUNCIÓN AGREGAR IMPUESTO, CALCULA TAMBIEN EL DESCUENTO Y EL TOTAL
 ==============================================================================================*/
 
 function agregarImpuesto(){
+  
+  var descuento = Number($("#nuevoTotalDescuento").val());
+  var total;
 
   var impuesto = Number($("#nuevoImpuestoVenta").val());
-  var precioTotal = Number($("#nuevoTotalVenta").attr("total"));
+  var precioTotal = Number($("#nuevoSubTotal").attr("total"));
 
-  var precioImpuesto = precioTotal * impuesto / 100;
+  
+
+  var precioImpuesto = (precioTotal - descuento) * impuesto / 100;
 
   var totalConImpuesto = precioTotal + precioImpuesto;
 
-  $("#nuevoTotalVenta").val(totalConImpuesto);
-
+  total =  precioTotal - descuento + precioImpuesto;
+  
+  $("#nuevoSubTotal").val(precioTotal);
+  
   $("#nuevoPrecioImpuesto").val(precioImpuesto);
-
+  
   $("#nuevoPrecioNeto").val(precioTotal);
-  
-  
+
+  $("#nuevoTotal").val(total);
+
   
 }
 
 /*==============================================================================================
-CUANDO CAMBIA EL IMPUESTO
+CUANDO CAMBIA EL IMPUESTO FUNCION QUE ESTA DESACTIVADA YA QUE EL IMPUESTO EN MÉXICO ES FIJO
 ==============================================================================================*/
 
-$("#nuevoImpuestoVenta").change(function(){
+// $("#nuevoImpuestoVenta").change(function(){
 
-  agregarImpuesto();
+//   agregarImpuesto();
 
-  //Con esto se restablece el select de metodo de pago por default
-  metodoDePago().removeClass("col-xs-4");
+//   //Con esto se restablece el select de metodo de pago por default
+//   metodoDePago().removeClass("col-xs-4");
 
-  metodoDePago().addClass("col-xs-6");
+//   metodoDePago().addClass("col-xs-6");
 
-  ocultarCampos();
+//   ocultarCampos();
 
-});
+// });
 
 /*==============================================================================================
-PONER FORMATO AL PRECIO FINAL
+PONER FORMATO AL PRECIO FINAL, SUBTOTAL, DESCUENTO E IMPUESTO
 ==============================================================================================*/
 
-$("#nuevoTotalVenta").number(true, 2);
+$("#nuevoSubTotal").number(true, 2);
+$("#nuevoTotalDescuento").number(true, 2);
+$("#nuevoPrecioImpuesto").number(true, 2);
+$("#nuevoTotal").number(true, 2);
 
 /*==============================================================================================
 SELECCIONAR MÉTODO DE PAGO 
@@ -662,7 +680,7 @@ CAMBIO EN EFECTIVO
 $(".formularioVenta").on("change", "input.nuevoValorEfectivo", function(){ //TODO VALIDAR QUE LA CANTIDAD QUE SE PAGUE SEA MAYOR QUE LA CONTIDAD TOTAL NETA
 
    var efectivo = Number($(this).val());
-   var totalVenta = Number($("#nuevoTotalVenta").val());
+   var totalVenta = Number($("#nuevoTotal").val());
 
    //Validar que efectivo sea mayour que el total
 
@@ -726,13 +744,11 @@ function metodoDePago(){
 }
 
 /*==============================================================================================
-AGREGAR DESCUENTO EN CADA PRODUCTO // TODO: REALIZAR LA SUMA DE LOS DESCUENTOS.
+AGREGAR DESCUENTO EN CADA PRODUCTO // 
 ==============================================================================================*/
 
 $(".formularioVenta").on("click", "button.agregarDescuento", function () {
 
-
-  // var idDescuento = $(this).attr('idDescuento');
   var btnDescuento = $(this);
 
 
@@ -758,6 +774,8 @@ $(".formularioVenta").on("click", "button.agregarDescuento", function () {
 
   );
 
+  ocultarCampos();
+
 });
 
 /*==============================================================================================
@@ -767,14 +785,17 @@ $(".formularioVenta").on("click", "button.eliminarDescuento", function () {
  
 
   var btnEliminar = $(this);
-  // $(this).parent().parent().parent().children('.ingresoDescuento').after('<div class="alert alert-warning">Hola</div>');
+  
   btnEliminar.parent().parent().parent().children('.ingresoDescuento').remove();
 
   btnEliminar.removeClass("btn-danger eliminarDescuento");
   btnEliminar.addClass("btn-primary agregarDescuento");
 
   sumarTotalDescuentos();
-  
+
+  agregarImpuesto();
+
+  ocultarCampos();
 });
 
 /*==============================================================================================
@@ -782,13 +803,17 @@ CUANDO CAMBIA EL DESCUENTO
 ==============================================================================================*/
 
 $(".formularioVenta").on("blur", "input.nuevoDescuento", function () {
-
-    sumarTotalDescuentos();
-
+  
+  sumarTotalDescuentos();
+  agregarImpuesto();
+  ocultarCampos();
+  
 });
 
 $(".formularioVenta").on("change", "input.nuevoDescuento", function () {
-
+  
   sumarTotalDescuentos();
+  agregarImpuesto();
+  ocultarCampos();
 
 });
